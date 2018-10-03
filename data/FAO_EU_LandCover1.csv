@@ -1,0 +1,808 @@
+Country,Element,Item,Year,Unit,Value
+Austria,Area,Arable land and Permanent crops,2000,1000 ha,1470
+Austria,Area,Arable land and Permanent crops,2001,1000 ha,1458
+Austria,Area,Arable land and Permanent crops,2002,1000 ha,1456
+Austria,Area,Arable land and Permanent crops,2003,1000 ha,1451.03
+Austria,Area,Arable land and Permanent crops,2004,1000 ha,1445.3
+Austria,Area,Arable land and Permanent crops,2005,1000 ha,1446.7
+Austria,Area,Arable land and Permanent crops,2006,1000 ha,1445.2
+Austria,Area,Arable land and Permanent crops,2007,1000 ha,1444
+Austria,Area,Arable land and Permanent crops,2008,1000 ha,1435.3
+Austria,Area,Arable land and Permanent crops,2009,1000 ha,1432.9
+Austria,Area,Arable land and Permanent crops,2010,1000 ha,1429.1
+Austria,Area,Arable land and Permanent crops,2011,1000 ha,1424.9
+Austria,Area,Arable land and Permanent crops,2012,1000 ha,1420.4
+Austria,Area,Arable land and Permanent crops,2013,1000 ha,1419.3
+Austria,Area,Arable land and Permanent crops,2014,1000 ha,1417.1
+Austria,Area,Arable land and Permanent crops,2015,1000 ha,1411.59
+Austria,Area,Temporary meadows and pastures,2001,1000 ha,137.2
+Austria,Area,Temporary meadows and pastures,2002,1000 ha,144.5
+Austria,Area,Temporary meadows and pastures,2003,1000 ha,151.62
+Austria,Area,Temporary meadows and pastures,2004,1000 ha,157.8
+Austria,Area,Temporary meadows and pastures,2005,1000 ha,165.5
+Austria,Area,Temporary meadows and pastures,2006,1000 ha,170.1
+Austria,Area,Temporary meadows and pastures,2007,1000 ha,163.5
+Austria,Area,Temporary meadows and pastures,2008,1000 ha,156.6
+Austria,Area,Temporary meadows and pastures,2009,1000 ha,159.4
+Austria,Area,Temporary meadows and pastures,2010,1000 ha,165.2
+Austria,Area,Temporary meadows and pastures,2011,1000 ha,163.3
+Austria,Area,Temporary meadows and pastures,2012,1000 ha,161.6
+Austria,Area,Temporary meadows and pastures,2013,1000 ha,161.9
+Austria,Area,Temporary meadows and pastures,2014,1000 ha,162.3
+Austria,Area,Temporary meadows and pastures,2015,1000 ha,158
+Austria,Area,Permanent meadows and pastures,2000,1000 ha,1470.2
+Austria,Area,Permanent meadows and pastures,2001,1000 ha,1458.1
+Austria,Area,Permanent meadows and pastures,2002,1000 ha,1446.2
+Austria,Area,Permanent meadows and pastures,2003,1000 ha,1434.2
+Austria,Area,Permanent meadows and pastures,2004,1000 ha,1422.1
+Austria,Area,Permanent meadows and pastures,2005,1000 ha,1410.1
+Austria,Area,Permanent meadows and pastures,2006,1000 ha,1398.1
+Austria,Area,Permanent meadows and pastures,2007,1000 ha,1386.1
+Austria,Area,Permanent meadows and pastures,2008,1000 ha,1374.1
+Austria,Area,Permanent meadows and pastures,2009,1000 ha,1362.1
+Austria,Area,Permanent meadows and pastures,2010,1000 ha,1350.1
+Austria,Area,Permanent meadows and pastures,2011,1000 ha,1332.4
+Austria,Area,Permanent meadows and pastures,2012,1000 ha,1314.8
+Austria,Area,Permanent meadows and pastures,2013,1000 ha,1297.1
+Austria,Area,Permanent meadows and pastures,2014,1000 ha,1297.1
+Austria,Area,Permanent meadows and pastures,2015,1000 ha,1306.86
+Belgium,Area,Arable land and Permanent crops,2000,1000 ha,882.6
+Belgium,Area,Arable land and Permanent crops,2001,1000 ha,865.8
+Belgium,Area,Arable land and Permanent crops,2002,1000 ha,853.1
+Belgium,Area,Arable land and Permanent crops,2003,1000 ha,856.2
+Belgium,Area,Arable land and Permanent crops,2004,1000 ha,861.3
+Belgium,Area,Arable land and Permanent crops,2005,1000 ha,864
+Belgium,Area,Arable land and Permanent crops,2006,1000 ha,863
+Belgium,Area,Arable land and Permanent crops,2007,1000 ha,859.9
+Belgium,Area,Arable land and Permanent crops,2008,1000 ha,865.3
+Belgium,Area,Arable land and Permanent crops,2009,1000 ha,861.6
+Belgium,Area,Arable land and Permanent crops,2010,1000 ha,855.7
+Belgium,Area,Arable land and Permanent crops,2011,1000 ha,846.7
+Belgium,Area,Arable land and Permanent crops,2012,1000 ha,825
+Belgium,Area,Arable land and Permanent crops,2013,1000 ha,838.3
+Belgium,Area,Arable land and Permanent crops,2014,1000 ha,839.3
+Belgium,Area,Arable land and Permanent crops,2015,1000 ha,852
+Belgium,Area,Temporary meadows and pastures,2002,1000 ha,77
+Belgium,Area,Temporary meadows and pastures,2003,1000 ha,76
+Belgium,Area,Temporary meadows and pastures,2004,1000 ha,77
+Belgium,Area,Temporary meadows and pastures,2005,1000 ha,81
+Belgium,Area,Temporary meadows and pastures,2006,1000 ha,82
+Belgium,Area,Temporary meadows and pastures,2007,1000 ha,81
+Belgium,Area,Temporary meadows and pastures,2008,1000 ha,80
+Belgium,Area,Temporary meadows and pastures,2009,1000 ha,80
+Belgium,Area,Temporary meadows and pastures,2010,1000 ha,79
+Belgium,Area,Temporary meadows and pastures,2011,1000 ha,80
+Belgium,Area,Temporary meadows and pastures,2012,1000 ha,71.2
+Belgium,Area,Temporary meadows and pastures,2013,1000 ha,70.7
+Belgium,Area,Temporary meadows and pastures,2014,1000 ha,68
+Belgium,Area,Temporary meadows and pastures,2015,1000 ha,81
+Belgium,Area,Permanent meadows and pastures,2000,1000 ha,507
+Belgium,Area,Permanent meadows and pastures,2001,1000 ha,521
+Belgium,Area,Permanent meadows and pastures,2002,1000 ha,536
+Belgium,Area,Permanent meadows and pastures,2003,1000 ha,536
+Belgium,Area,Permanent meadows and pastures,2004,1000 ha,530
+Belgium,Area,Permanent meadows and pastures,2005,1000 ha,519
+Belgium,Area,Permanent meadows and pastures,2006,1000 ha,517
+Belgium,Area,Permanent meadows and pastures,2007,1000 ha,507
+Belgium,Area,Permanent meadows and pastures,2008,1000 ha,500
+Belgium,Area,Permanent meadows and pastures,2009,1000 ha,502
+Belgium,Area,Permanent meadows and pastures,2010,1000 ha,500
+Belgium,Area,Permanent meadows and pastures,2011,1000 ha,489
+Belgium,Area,Permanent meadows and pastures,2012,1000 ha,507
+Belgium,Area,Permanent meadows and pastures,2013,1000 ha,498.2
+Belgium,Area,Permanent meadows and pastures,2014,1000 ha,492
+Belgium,Area,Permanent meadows and pastures,2015,1000 ha,476
+Denmark,Area,Arable land and Permanent crops,2000,1000 ha,2289
+Denmark,Area,Arable land and Permanent crops,2001,1000 ha,2300
+Denmark,Area,Arable land and Permanent crops,2002,1000 ha,2283
+Denmark,Area,Arable land and Permanent crops,2003,1000 ha,2274
+Denmark,Area,Arable land and Permanent crops,2004,1000 ha,2276
+Denmark,Area,Arable land and Permanent crops,2005,1000 ha,2339
+Denmark,Area,Arable land and Permanent crops,2006,1000 ha,2353
+Denmark,Area,Arable land and Permanent crops,2007,1000 ha,2313
+Denmark,Area,Arable land and Permanent crops,2008,1000 ha,2407
+Denmark,Area,Arable land and Permanent crops,2009,1000 ha,2437
+Denmark,Area,Arable land and Permanent crops,2010,1000 ha,2426
+Denmark,Area,Arable land and Permanent crops,2011,1000 ha,2503
+Denmark,Area,Arable land and Permanent crops,2012,1000 ha,2424
+Denmark,Area,Arable land and Permanent crops,2013,1000 ha,2414
+Denmark,Area,Arable land and Permanent crops,2014,1000 ha,2436
+Denmark,Area,Arable land and Permanent crops,2015,1000 ha,2356
+Denmark,Area,Temporary meadows and pastures,2001,1000 ha,437
+Denmark,Area,Temporary meadows and pastures,2002,1000 ha,430
+Denmark,Area,Temporary meadows and pastures,2003,1000 ha,444
+Denmark,Area,Temporary meadows and pastures,2004,1000 ha,432
+Denmark,Area,Temporary meadows and pastures,2005,1000 ha,464
+Denmark,Area,Temporary meadows and pastures,2006,1000 ha,474
+Denmark,Area,Temporary meadows and pastures,2007,1000 ha,471
+Denmark,Area,Temporary meadows and pastures,2008,1000 ha,515
+Denmark,Area,Temporary meadows and pastures,2009,1000 ha,536
+Denmark,Area,Temporary meadows and pastures,2010,1000 ha,562
+Denmark,Area,Temporary meadows and pastures,2011,1000 ha,566
+Denmark,Area,Temporary meadows and pastures,2012,1000 ha,569
+Denmark,Area,Temporary meadows and pastures,2013,1000 ha,566
+Denmark,Area,Temporary meadows and pastures,2014,1000 ha,561
+Denmark,Area,Temporary meadows and pastures,2015,1000 ha,493
+Denmark,Area,Permanent meadows and pastures,2000,1000 ha,358
+Denmark,Area,Permanent meadows and pastures,2001,1000 ha,376
+Denmark,Area,Permanent meadows and pastures,2002,1000 ha,382
+Denmark,Area,Permanent meadows and pastures,2003,1000 ha,384
+Denmark,Area,Permanent meadows and pastures,2004,1000 ha,370
+Denmark,Area,Permanent meadows and pastures,2005,1000 ha,368
+Denmark,Area,Permanent meadows and pastures,2006,1000 ha,357
+Denmark,Area,Permanent meadows and pastures,2007,1000 ha,350
+Denmark,Area,Permanent meadows and pastures,2008,1000 ha,261
+Denmark,Area,Permanent meadows and pastures,2009,1000 ha,197
+Denmark,Area,Permanent meadows and pastures,2010,1000 ha,200
+Denmark,Area,Permanent meadows and pastures,2011,1000 ha,187
+Denmark,Area,Permanent meadows and pastures,2012,1000 ha,200
+Denmark,Area,Permanent meadows and pastures,2013,1000 ha,195
+Denmark,Area,Permanent meadows and pastures,2014,1000 ha,193
+Denmark,Area,Permanent meadows and pastures,2015,1000 ha,255
+Finland,Area,Arable land and Permanent crops,2000,1000 ha,2192
+Finland,Area,Arable land and Permanent crops,2001,1000 ha,2197
+Finland,Area,Arable land and Permanent crops,2002,1000 ha,2209
+Finland,Area,Arable land and Permanent crops,2003,1000 ha,2218
+Finland,Area,Arable land and Permanent crops,2004,1000 ha,2225
+Finland,Area,Arable land and Permanent crops,2005,1000 ha,2240.8
+Finland,Area,Arable land and Permanent crops,2006,1000 ha,2264.8
+Finland,Area,Arable land and Permanent crops,2007,1000 ha,2260.9
+Finland,Area,Arable land and Permanent crops,2008,1000 ha,2263.4
+Finland,Area,Arable land and Permanent crops,2009,1000 ha,2262.5
+Finland,Area,Arable land and Permanent crops,2010,1000 ha,2258.9
+Finland,Area,Arable land and Permanent crops,2011,1000 ha,2254.6
+Finland,Area,Arable land and Permanent crops,2012,1000 ha,2253.1
+Finland,Area,Arable land and Permanent crops,2013,1000 ha,2227.5
+Finland,Area,Arable land and Permanent crops,2014,1000 ha,2234.1
+Finland,Area,Arable land and Permanent crops,2015,1000 ha,2245.6
+Finland,Area,Temporary meadows and pastures,2001,1000 ha,664
+Finland,Area,Temporary meadows and pastures,2002,1000 ha,638
+Finland,Area,Temporary meadows and pastures,2003,1000 ha,629
+Finland,Area,Temporary meadows and pastures,2004,1000 ha,620
+Finland,Area,Temporary meadows and pastures,2005,1000 ha,620
+Finland,Area,Temporary meadows and pastures,2006,1000 ha,625
+Finland,Area,Temporary meadows and pastures,2007,1000 ha,654
+Finland,Area,Temporary meadows and pastures,2008,1000 ha,655
+Finland,Area,Temporary meadows and pastures,2009,1000 ha,640
+Finland,Area,Temporary meadows and pastures,2010,1000 ha,659
+Finland,Area,Temporary meadows and pastures,2011,1000 ha,667
+Finland,Area,Temporary meadows and pastures,2012,1000 ha,660
+Finland,Area,Temporary meadows and pastures,2013,1000 ha,649
+Finland,Area,Temporary meadows and pastures,2014,1000 ha,652
+Finland,Area,Temporary meadows and pastures,2015,1000 ha,689.7
+Finland,Area,Permanent meadows and pastures,2000,1000 ha,26
+Finland,Area,Permanent meadows and pastures,2001,1000 ha,25
+Finland,Area,Permanent meadows and pastures,2002,1000 ha,27
+Finland,Area,Permanent meadows and pastures,2003,1000 ha,28
+Finland,Area,Permanent meadows and pastures,2004,1000 ha,28
+Finland,Area,Permanent meadows and pastures,2005,1000 ha,33
+Finland,Area,Permanent meadows and pastures,2006,1000 ha,36
+Finland,Area,Permanent meadows and pastures,2007,1000 ha,34
+Finland,Area,Permanent meadows and pastures,2008,1000 ha,33
+Finland,Area,Permanent meadows and pastures,2009,1000 ha,34
+Finland,Area,Permanent meadows and pastures,2010,1000 ha,33
+Finland,Area,Permanent meadows and pastures,2011,1000 ha,32
+Finland,Area,Permanent meadows and pastures,2012,1000 ha,32
+Finland,Area,Permanent meadows and pastures,2013,1000 ha,31
+Finland,Area,Permanent meadows and pastures,2014,1000 ha,33
+Finland,Area,Permanent meadows and pastures,2015,1000 ha,27.8
+France,Area,Arable land and Permanent crops,2000,1000 ha,19495.1
+France,Area,Arable land and Permanent crops,2001,1000 ha,19480.6
+France,Area,Arable land and Permanent crops,2002,1000 ha,19499.8
+France,Area,Arable land and Permanent crops,2003,1000 ha,19470.8
+France,Area,Arable land and Permanent crops,2004,1000 ha,19478.8
+France,Area,Arable land and Permanent crops,2005,1000 ha,19488.2
+France,Area,Arable land and Permanent crops,2006,1000 ha,19435.6
+France,Area,Arable land and Permanent crops,2007,1000 ha,19358.3
+France,Area,Arable land and Permanent crops,2008,1000 ha,19320
+France,Area,Arable land and Permanent crops,2009,1000 ha,19283.4
+France,Area,Arable land and Permanent crops,2010,1000 ha,19311.8
+France,Area,Arable land and Permanent crops,2011,1000 ha,19281.6
+France,Area,Arable land and Permanent crops,2012,1000 ha,19285.5
+France,Area,Arable land and Permanent crops,2013,1000 ha,19302.2
+France,Area,Arable land and Permanent crops,2014,1000 ha,19328.3
+France,Area,Arable land and Permanent crops,2015,1000 ha,19465
+France,Area,Temporary meadows and pastures,2001,1000 ha,3066
+France,Area,Temporary meadows and pastures,2002,1000 ha,3092.2
+France,Area,Temporary meadows and pastures,2003,1000 ha,3118.4
+France,Area,Temporary meadows and pastures,2004,1000 ha,3152.6
+France,Area,Temporary meadows and pastures,2005,1000 ha,3132
+France,Area,Temporary meadows and pastures,2006,1000 ha,3200.5
+France,Area,Temporary meadows and pastures,2007,1000 ha,3253.6
+France,Area,Temporary meadows and pastures,2008,1000 ha,3299.6
+France,Area,Temporary meadows and pastures,2009,1000 ha,3314.2
+France,Area,Temporary meadows and pastures,2010,1000 ha,3437.2
+France,Area,Temporary meadows and pastures,2011,1000 ha,3454.8
+France,Area,Temporary meadows and pastures,2012,1000 ha,3434.5
+France,Area,Temporary meadows and pastures,2013,1000 ha,3371.5
+France,Area,Temporary meadows and pastures,2014,1000 ha,3314
+France,Area,Temporary meadows and pastures,2015,1000 ha,3177.1
+France,Area,Permanent meadows and pastures,2000,1000 ha,10312.3
+France,Area,Permanent meadows and pastures,2001,1000 ha,10232.7
+France,Area,Permanent meadows and pastures,2002,1000 ha,10110.9
+France,Area,Permanent meadows and pastures,2003,1000 ha,10063.8
+France,Area,Permanent meadows and pastures,2004,1000 ha,9979.6
+France,Area,Permanent meadows and pastures,2005,1000 ha,9902.2
+France,Area,Permanent meadows and pastures,2006,1000 ha,9877.1
+France,Area,Permanent meadows and pastures,2007,1000 ha,9847.8
+France,Area,Permanent meadows and pastures,2008,1000 ha,9790.1
+France,Area,Permanent meadows and pastures,2009,1000 ha,9736.5
+France,Area,Permanent meadows and pastures,2010,1000 ha,9614.5
+France,Area,Permanent meadows and pastures,2011,1000 ha,9597
+France,Area,Permanent meadows and pastures,2012,1000 ha,9559.3
+France,Area,Permanent meadows and pastures,2013,1000 ha,9471.5
+France,Area,Permanent meadows and pastures,2014,1000 ha,9438.2
+France,Area,Permanent meadows and pastures,2015,1000 ha,9261.9
+Germany,Area,Arable land and Permanent crops,2000,1000 ha,12020
+Germany,Area,Arable land and Permanent crops,2001,1000 ha,12021
+Germany,Area,Arable land and Permanent crops,2002,1000 ha,11997
+Germany,Area,Arable land and Permanent crops,2003,1000 ha,12033
+Germany,Area,Arable land and Permanent crops,2004,1000 ha,12100
+Germany,Area,Arable land and Permanent crops,2005,1000 ha,12102
+Germany,Area,Arable land and Permanent crops,2006,1000 ha,12064
+Germany,Area,Arable land and Permanent crops,2007,1000 ha,12075
+Germany,Area,Arable land and Permanent crops,2008,1000 ha,12132
+Germany,Area,Arable land and Permanent crops,2009,1000 ha,12145
+Germany,Area,Arable land and Permanent crops,2010,1000 ha,12045
+Germany,Area,Arable land and Permanent crops,2011,1000 ha,12075
+Germany,Area,Arable land and Permanent crops,2012,1000 ha,12034
+Germany,Area,Arable land and Permanent crops,2013,1000 ha,12076
+Germany,Area,Arable land and Permanent crops,2014,1000 ha,12074
+Germany,Area,Arable land and Permanent crops,2015,1000 ha,12054
+Germany,Area,Temporary meadows and pastures,2001,1000 ha,1581
+Germany,Area,Temporary meadows and pastures,2002,1000 ha,1540
+Germany,Area,Temporary meadows and pastures,2003,1000 ha,1589
+Germany,Area,Temporary meadows and pastures,2004,1000 ha,1719
+Germany,Area,Temporary meadows and pastures,2005,1000 ha,1805
+Germany,Area,Temporary meadows and pastures,2006,1000 ha,1956
+Germany,Area,Temporary meadows and pastures,2007,1000 ha,2088
+Germany,Area,Temporary meadows and pastures,2008,1000 ha,2261
+Germany,Area,Temporary meadows and pastures,2009,1000 ha,2347
+Germany,Area,Temporary meadows and pastures,2010,1000 ha,2571
+Germany,Area,Temporary meadows and pastures,2011,1000 ha,2814
+Germany,Area,Temporary meadows and pastures,2012,1000 ha,2815
+Germany,Area,Temporary meadows and pastures,2013,1000 ha,2760
+Germany,Area,Temporary meadows and pastures,2014,1000 ha,2857
+Germany,Area,Temporary meadows and pastures,2015,1000 ha,2746
+Germany,Area,Permanent meadows and pastures,2000,1000 ha,5048
+Germany,Area,Permanent meadows and pastures,2001,1000 ha,5013
+Germany,Area,Permanent meadows and pastures,2002,1000 ha,4970
+Germany,Area,Permanent meadows and pastures,2003,1000 ha,4968
+Germany,Area,Permanent meadows and pastures,2004,1000 ha,4913
+Germany,Area,Permanent meadows and pastures,2005,1000 ha,4929
+Germany,Area,Permanent meadows and pastures,2006,1000 ha,4882
+Germany,Area,Permanent meadows and pastures,2007,1000 ha,4875
+Germany,Area,Permanent meadows and pastures,2008,1000 ha,4789
+Germany,Area,Permanent meadows and pastures,2009,1000 ha,4741
+Germany,Area,Permanent meadows and pastures,2010,1000 ha,4655
+Germany,Area,Permanent meadows and pastures,2011,1000 ha,4644
+Germany,Area,Permanent meadows and pastures,2012,1000 ha,4630
+Germany,Area,Permanent meadows and pastures,2013,1000 ha,4621
+Germany,Area,Permanent meadows and pastures,2014,1000 ha,4651
+Germany,Area,Permanent meadows and pastures,2015,1000 ha,4677
+Greece,Area,Arable land and Permanent crops,2000,1000 ha,3854
+Greece,Area,Arable land and Permanent crops,2001,1000 ha,3852
+Greece,Area,Arable land and Permanent crops,2002,1000 ha,3846
+Greece,Area,Arable land and Permanent crops,2003,1000 ha,3844
+Greece,Area,Arable land and Permanent crops,2004,1000 ha,3761
+Greece,Area,Arable land and Permanent crops,2005,1000 ha,3775
+Greece,Area,Arable land and Permanent crops,2006,1000 ha,3722
+Greece,Area,Arable land and Permanent crops,2007,1000 ha,3701
+Greece,Area,Arable land and Permanent crops,2008,1000 ha,3694
+Greece,Area,Arable land and Permanent crops,2009,1000 ha,3686
+Greece,Area,Arable land and Permanent crops,2010,1000 ha,3704
+Greece,Area,Arable land and Permanent crops,2011,1000 ha,3700
+Greece,Area,Arable land and Permanent crops,2012,1000 ha,3676
+Greece,Area,Arable land and Permanent crops,2013,1000 ha,3629
+Greece,Area,Arable land and Permanent crops,2014,1000 ha,3333
+Greece,Area,Arable land and Permanent crops,2015,1000 ha,3333
+Greece,Area,Permanent meadows and pastures,2000,1000 ha,4675
+Greece,Area,Permanent meadows and pastures,2001,1000 ha,4650
+Greece,Area,Permanent meadows and pastures,2002,1000 ha,4600
+Greece,Area,Permanent meadows and pastures,2003,1000 ha,4600
+Greece,Area,Permanent meadows and pastures,2004,1000 ha,4580
+Greece,Area,Permanent meadows and pastures,2005,1000 ha,4580
+Greece,Area,Permanent meadows and pastures,2006,1000 ha,4550
+Greece,Area,Permanent meadows and pastures,2007,1000 ha,4550
+Greece,Area,Permanent meadows and pastures,2008,1000 ha,4520
+Greece,Area,Permanent meadows and pastures,2009,1000 ha,4500
+Greece,Area,Permanent meadows and pastures,2010,1000 ha,4490
+Greece,Area,Permanent meadows and pastures,2011,1000 ha,4480
+Greece,Area,Permanent meadows and pastures,2012,1000 ha,4470
+Greece,Area,Permanent meadows and pastures,2013,1000 ha,4460
+Greece,Area,Permanent meadows and pastures,2014,1000 ha,4450
+Greece,Area,Permanent meadows and pastures,2015,1000 ha,4450
+Iceland,Area,Arable land and Permanent crops,2000,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2001,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2002,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2003,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2004,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2005,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2006,1000 ha,129
+Iceland,Area,Arable land and Permanent crops,2007,1000 ha,125
+Iceland,Area,Arable land and Permanent crops,2008,1000 ha,125
+Iceland,Area,Arable land and Permanent crops,2009,1000 ha,124
+Iceland,Area,Arable land and Permanent crops,2010,1000 ha,123
+Iceland,Area,Arable land and Permanent crops,2011,1000 ha,122.2
+Iceland,Area,Arable land and Permanent crops,2012,1000 ha,121.2
+Iceland,Area,Arable land and Permanent crops,2013,1000 ha,121.2
+Iceland,Area,Arable land and Permanent crops,2014,1000 ha,121.2
+Iceland,Area,Arable land and Permanent crops,2015,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2001,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2002,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2003,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2004,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2005,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2006,1000 ha,121
+Iceland,Area,Temporary meadows and pastures,2007,1000 ha,117
+Iceland,Area,Temporary meadows and pastures,2008,1000 ha,117
+Iceland,Area,Temporary meadows and pastures,2009,1000 ha,116
+Iceland,Area,Temporary meadows and pastures,2010,1000 ha,114
+Iceland,Area,Temporary meadows and pastures,2011,1000 ha,115
+Iceland,Area,Temporary meadows and pastures,2012,1000 ha,115
+Iceland,Area,Temporary meadows and pastures,2013,1000 ha,115
+Iceland,Area,Temporary meadows and pastures,2014,1000 ha,115
+Iceland,Area,Temporary meadows and pastures,2015,1000 ha,115
+Iceland,Area,Permanent meadows and pastures,2000,1000 ha,1760
+Iceland,Area,Permanent meadows and pastures,2001,1000 ha,1760
+Iceland,Area,Permanent meadows and pastures,2002,1000 ha,1758
+Iceland,Area,Permanent meadows and pastures,2003,1000 ha,1756
+Iceland,Area,Permanent meadows and pastures,2004,1000 ha,1755
+Iceland,Area,Permanent meadows and pastures,2005,1000 ha,1753
+Iceland,Area,Permanent meadows and pastures,2006,1000 ha,1752
+Iceland,Area,Permanent meadows and pastures,2007,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2008,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2009,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2010,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2011,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2012,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2013,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2014,1000 ha,1751
+Iceland,Area,Permanent meadows and pastures,2015,1000 ha,1751
+Ireland,Area,Arable land and Permanent crops,2000,1000 ha,1079
+Ireland,Area,Arable land and Permanent crops,2001,1000 ha,1190
+Ireland,Area,Arable land and Permanent crops,2002,1000 ha,1179
+Ireland,Area,Arable land and Permanent crops,2003,1000 ha,1184
+Ireland,Area,Arable land and Permanent crops,2004,1000 ha,1207
+Ireland,Area,Arable land and Permanent crops,2005,1000 ha,1187
+Ireland,Area,Arable land and Permanent crops,2006,1000 ha,1156
+Ireland,Area,Arable land and Permanent crops,2007,1000 ha,1063
+Ireland,Area,Arable land and Permanent crops,2008,1000 ha,1103.7
+Ireland,Area,Arable land and Permanent crops,2009,1000 ha,1092
+Ireland,Area,Arable land and Permanent crops,2010,1000 ha,1013
+Ireland,Area,Arable land and Permanent crops,2011,1000 ha,1063
+Ireland,Area,Arable land and Permanent crops,2012,1000 ha,1171
+Ireland,Area,Arable land and Permanent crops,2013,1000 ha,1114
+Ireland,Area,Arable land and Permanent crops,2014,1000 ha,1059
+Ireland,Area,Arable land and Permanent crops,2015,1000 ha,1030
+Ireland,Area,Temporary meadows and pastures,2001,1000 ha,775
+Ireland,Area,Temporary meadows and pastures,2002,1000 ha,755
+Ireland,Area,Temporary meadows and pastures,2003,1000 ha,748
+Ireland,Area,Temporary meadows and pastures,2004,1000 ha,783
+Ireland,Area,Temporary meadows and pastures,2005,1000 ha,786
+Ireland,Area,Temporary meadows and pastures,2006,1000 ha,775
+Ireland,Area,Temporary meadows and pastures,2007,1000 ha,683
+Ireland,Area,Temporary meadows and pastures,2008,1000 ha,685
+Ireland,Area,Temporary meadows and pastures,2009,1000 ha,690
+Ireland,Area,Temporary meadows and pastures,2010,1000 ha,659
+Ireland,Area,Temporary meadows and pastures,2011,1000 ha,698
+Ireland,Area,Temporary meadows and pastures,2012,1000 ha,789
+Ireland,Area,Temporary meadows and pastures,2013,1000 ha,737
+Ireland,Area,Temporary meadows and pastures,2014,1000 ha,692
+Ireland,Area,Temporary meadows and pastures,2015,1000 ha,670
+Ireland,Area,Permanent meadows and pastures,2000,1000 ha,3333
+Ireland,Area,Permanent meadows and pastures,2001,1000 ha,3220
+Ireland,Area,Permanent meadows and pastures,2002,1000 ha,3194
+Ireland,Area,Permanent meadows and pastures,2003,1000 ha,3186
+Ireland,Area,Permanent meadows and pastures,2004,1000 ha,3098
+Ireland,Area,Permanent meadows and pastures,2005,1000 ha,3115
+Ireland,Area,Permanent meadows and pastures,2006,1000 ha,3104
+Ireland,Area,Permanent meadows and pastures,2007,1000 ha,3213
+Ireland,Area,Permanent meadows and pastures,2008,1000 ha,3096.4
+Ireland,Area,Permanent meadows and pastures,2009,1000 ha,3097
+Ireland,Area,Permanent meadows and pastures,2010,1000 ha,3555
+Ireland,Area,Permanent meadows and pastures,2011,1000 ha,3492
+Ireland,Area,Permanent meadows and pastures,2012,1000 ha,3362
+Ireland,Area,Permanent meadows and pastures,2013,1000 ha,3363
+Ireland,Area,Permanent meadows and pastures,2014,1000 ha,3407
+Ireland,Area,Permanent meadows and pastures,2015,1000 ha,3400
+Italy,Area,Arable land and Permanent crops,2000,1000 ha,11284
+Italy,Area,Arable land and Permanent crops,2001,1000 ha,11137
+Italy,Area,Arable land and Permanent crops,2002,1000 ha,10894
+Italy,Area,Arable land and Permanent crops,2003,1000 ha,10539
+Italy,Area,Arable land and Permanent crops,2004,1000 ha,10529
+Italy,Area,Arable land and Permanent crops,2005,1000 ha,10334
+Italy,Area,Arable land and Permanent crops,2006,1000 ha,9921
+Italy,Area,Arable land and Permanent crops,2007,1000 ha,9702
+Italy,Area,Arable land and Permanent crops,2008,1000 ha,10041.2
+Italy,Area,Arable land and Permanent crops,2009,1000 ha,9559.4
+Italy,Area,Arable land and Permanent crops,2010,1000 ha,9629.8
+Italy,Area,Arable land and Permanent crops,2011,1000 ha,9240.6
+Italy,Area,Arable land and Permanent crops,2012,1000 ha,9560
+Italy,Area,Arable land and Permanent crops,2013,1000 ha,9087
+Italy,Area,Arable land and Permanent crops,2014,1000 ha,9121
+Italy,Area,Arable land and Permanent crops,2015,1000 ha,9048
+Italy,Area,Temporary meadows and pastures,2008,1000 ha,1969
+Italy,Area,Temporary meadows and pastures,2009,1000 ha,2008
+Italy,Area,Temporary meadows and pastures,2010,1000 ha,1918
+Italy,Area,Temporary meadows and pastures,2011,1000 ha,2029
+Italy,Area,Temporary meadows and pastures,2012,1000 ha,2062
+Italy,Area,Temporary meadows and pastures,2013,1000 ha,1956
+Italy,Area,Temporary meadows and pastures,2014,1000 ha,1996
+Italy,Area,Permanent meadows and pastures,2000,1000 ha,4353
+Italy,Area,Permanent meadows and pastures,2001,1000 ha,4365
+Italy,Area,Permanent meadows and pastures,2002,1000 ha,4379
+Italy,Area,Permanent meadows and pastures,2003,1000 ha,4368
+Italy,Area,Permanent meadows and pastures,2004,1000 ha,4354
+Italy,Area,Permanent meadows and pastures,2005,1000 ha,4402
+Italy,Area,Permanent meadows and pastures,2006,1000 ha,4282
+Italy,Area,Permanent meadows and pastures,2007,1000 ha,4460
+Italy,Area,Permanent meadows and pastures,2008,1000 ha,4416
+Italy,Area,Permanent meadows and pastures,2009,1000 ha,4423
+Italy,Area,Permanent meadows and pastures,2010,1000 ha,4698
+Italy,Area,Permanent meadows and pastures,2011,1000 ha,4612
+Italy,Area,Permanent meadows and pastures,2012,1000 ha,4169
+Italy,Area,Permanent meadows and pastures,2013,1000 ha,4543
+Italy,Area,Permanent meadows and pastures,2014,1000 ha,4041
+Italy,Area,Permanent meadows and pastures,2015,1000 ha,3897
+Liechtenstein,Area,Arable land and Permanent crops,2000,1000 ha,4
+Liechtenstein,Area,Arable land and Permanent crops,2001,1000 ha,3.9
+Liechtenstein,Area,Arable land and Permanent crops,2002,1000 ha,3.9
+Liechtenstein,Area,Arable land and Permanent crops,2003,1000 ha,3.9
+Liechtenstein,Area,Arable land and Permanent crops,2004,1000 ha,3.9
+Liechtenstein,Area,Arable land and Permanent crops,2005,1000 ha,3.9
+Liechtenstein,Area,Arable land and Permanent crops,2006,1000 ha,3.8
+Liechtenstein,Area,Arable land and Permanent crops,2007,1000 ha,3.8
+Liechtenstein,Area,Arable land and Permanent crops,2008,1000 ha,3.8
+Liechtenstein,Area,Arable land and Permanent crops,2009,1000 ha,3.5
+Liechtenstein,Area,Arable land and Permanent crops,2010,1000 ha,3.3
+Liechtenstein,Area,Arable land and Permanent crops,2011,1000 ha,3
+Liechtenstein,Area,Arable land and Permanent crops,2012,1000 ha,3
+Liechtenstein,Area,Arable land and Permanent crops,2013,1000 ha,2.6
+Liechtenstein,Area,Arable land and Permanent crops,2014,1000 ha,2.32
+Liechtenstein,Area,Arable land and Permanent crops,2015,1000 ha,2.16
+Liechtenstein,Area,Permanent meadows and pastures,2000,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2001,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2002,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2003,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2004,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2005,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2006,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2007,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2008,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2009,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2010,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2011,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2012,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2013,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2014,1000 ha,3
+Liechtenstein,Area,Permanent meadows and pastures,2015,1000 ha,3
+Luxembourg,Area,Arable land and Permanent crops,2000,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2001,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2002,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2003,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2004,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2005,1000 ha,62
+Luxembourg,Area,Arable land and Permanent crops,2006,1000 ha,62
+Luxembourg,Area,Arable land and Permanent crops,2007,1000 ha,63
+Luxembourg,Area,Arable land and Permanent crops,2008,1000 ha,64
+Luxembourg,Area,Arable land and Permanent crops,2009,1000 ha,63.33
+Luxembourg,Area,Arable land and Permanent crops,2010,1000 ha,63.45
+Luxembourg,Area,Arable land and Permanent crops,2011,1000 ha,63.63
+Luxembourg,Area,Arable land and Permanent crops,2012,1000 ha,64.13
+Luxembourg,Area,Arable land and Permanent crops,2013,1000 ha,63.98
+Luxembourg,Area,Arable land and Permanent crops,2014,1000 ha,64.16
+Luxembourg,Area,Arable land and Permanent crops,2015,1000 ha,64.35
+Luxembourg,Area,Temporary meadows and pastures,2013,1000 ha,12.58
+Luxembourg,Area,Temporary meadows and pastures,2014,1000 ha,12.79
+Luxembourg,Area,Temporary meadows and pastures,2015,1000 ha,12.05
+Luxembourg,Area,Permanent meadows and pastures,2000,1000 ha,65
+Luxembourg,Area,Permanent meadows and pastures,2001,1000 ha,65
+Luxembourg,Area,Permanent meadows and pastures,2002,1000 ha,65
+Luxembourg,Area,Permanent meadows and pastures,2003,1000 ha,65
+Luxembourg,Area,Permanent meadows and pastures,2004,1000 ha,65
+Luxembourg,Area,Permanent meadows and pastures,2005,1000 ha,67
+Luxembourg,Area,Permanent meadows and pastures,2006,1000 ha,67
+Luxembourg,Area,Permanent meadows and pastures,2007,1000 ha,68
+Luxembourg,Area,Permanent meadows and pastures,2008,1000 ha,67
+Luxembourg,Area,Permanent meadows and pastures,2009,1000 ha,67.37
+Luxembourg,Area,Permanent meadows and pastures,2010,1000 ha,67.59
+Luxembourg,Area,Permanent meadows and pastures,2011,1000 ha,67.64
+Luxembourg,Area,Permanent meadows and pastures,2012,1000 ha,67.29
+Luxembourg,Area,Permanent meadows and pastures,2013,1000 ha,66.9
+Luxembourg,Area,Permanent meadows and pastures,2014,1000 ha,66.83
+Luxembourg,Area,Permanent meadows and pastures,2015,1000 ha,66.92
+Netherlands,Area,Arable land and Permanent crops,2000,1000 ha,944
+Netherlands,Area,Arable land and Permanent crops,2001,1000 ha,938
+Netherlands,Area,Arable land and Permanent crops,2002,1000 ha,949
+Netherlands,Area,Arable land and Permanent crops,2003,1000 ha,938
+Netherlands,Area,Arable land and Permanent crops,2004,1000 ha,1158.6
+Netherlands,Area,Arable land and Permanent crops,2005,1000 ha,1142.8
+Netherlands,Area,Arable land and Permanent crops,2006,1000 ha,1102.5
+Netherlands,Area,Arable land and Permanent crops,2007,1000 ha,1093.7
+Netherlands,Area,Arable land and Permanent crops,2008,1000 ha,1101.5
+Netherlands,Area,Arable land and Permanent crops,2009,1000 ha,1090.2
+Netherlands,Area,Arable land and Permanent crops,2010,1000 ha,1059
+Netherlands,Area,Arable land and Permanent crops,2011,1000 ha,1042.4
+Netherlands,Area,Arable land and Permanent crops,2012,1000 ha,1046.8
+Netherlands,Area,Arable land and Permanent crops,2013,1000 ha,1074.5
+Netherlands,Area,Arable land and Permanent crops,2014,1000 ha,1081.3
+Netherlands,Area,Arable land and Permanent crops,2015,1000 ha,1071
+Netherlands,Area,Temporary meadows and pastures,2004,1000 ha,221.3
+Netherlands,Area,Temporary meadows and pastures,2005,1000 ha,205.1
+Netherlands,Area,Temporary meadows and pastures,2006,1000 ha,202.1
+Netherlands,Area,Temporary meadows and pastures,2007,1000 ha,195.7
+Netherlands,Area,Temporary meadows and pastures,2008,1000 ha,190.6
+Netherlands,Area,Temporary meadows and pastures,2009,1000 ha,189.9
+Netherlands,Area,Temporary meadows and pastures,2010,1000 ha,182
+Netherlands,Area,Temporary meadows and pastures,2011,1000 ha,172.3
+Netherlands,Area,Temporary meadows and pastures,2012,1000 ha,191.7
+Netherlands,Area,Temporary meadows and pastures,2013,1000 ha,209.9
+Netherlands,Area,Temporary meadows and pastures,2014,1000 ha,235.7
+Netherlands,Area,Temporary meadows and pastures,2015,1000 ha,242
+Netherlands,Area,Permanent meadows and pastures,2000,1000 ha,1012
+Netherlands,Area,Permanent meadows and pastures,2001,1000 ha,993
+Netherlands,Area,Permanent meadows and pastures,2002,1000 ha,1000
+Netherlands,Area,Permanent meadows and pastures,2003,1000 ha,985
+Netherlands,Area,Permanent meadows and pastures,2004,1000 ha,790.8
+Netherlands,Area,Permanent meadows and pastures,2005,1000 ha,794.9
+Netherlands,Area,Permanent meadows and pastures,2006,1000 ha,817.1
+Netherlands,Area,Permanent meadows and pastures,2007,1000 ha,820.7
+Netherlands,Area,Permanent meadows and pastures,2008,1000 ha,827.8
+Netherlands,Area,Permanent meadows and pastures,2009,1000 ha,827.2
+Netherlands,Area,Permanent meadows and pastures,2010,1000 ha,813.3
+Netherlands,Area,Permanent meadows and pastures,2011,1000 ha,816
+Netherlands,Area,Permanent meadows and pastures,2012,1000 ha,794.9
+Netherlands,Area,Permanent meadows and pastures,2013,1000 ha,773.1
+Netherlands,Area,Permanent meadows and pastures,2014,1000 ha,757.8
+Netherlands,Area,Permanent meadows and pastures,2015,1000 ha,766
+Norway,Area,Arable land and Permanent crops,2000,1000 ha,884
+Norway,Area,Arable land and Permanent crops,2001,1000 ha,886
+Norway,Area,Arable land and Permanent crops,2002,1000 ha,883
+Norway,Area,Arable land and Permanent crops,2003,1000 ha,876
+Norway,Area,Arable land and Permanent crops,2004,1000 ha,874
+Norway,Area,Arable land and Permanent crops,2005,1000 ha,867
+Norway,Area,Arable land and Permanent crops,2006,1000 ha,863
+Norway,Area,Arable land and Permanent crops,2007,1000 ha,857.4
+Norway,Area,Arable land and Permanent crops,2008,1000 ha,849.7
+Norway,Area,Arable land and Permanent crops,2009,1000 ha,839.46
+Norway,Area,Arable land and Permanent crops,2010,1000 ha,830.1
+Norway,Area,Arable land and Permanent crops,2011,1000 ha,822.4
+Norway,Area,Arable land and Permanent crops,2012,1000 ha,816.3
+Norway,Area,Arable land and Permanent crops,2013,1000 ha,810.73
+Norway,Area,Arable land and Permanent crops,2014,1000 ha,811.1
+Norway,Area,Arable land and Permanent crops,2015,1000 ha,810.2
+Norway,Area,Temporary meadows and pastures,2001,1000 ha,487
+Norway,Area,Temporary meadows and pastures,2002,1000 ha,492
+Norway,Area,Temporary meadows and pastures,2003,1000 ha,491
+Norway,Area,Temporary meadows and pastures,2004,1000 ha,489
+Norway,Area,Temporary meadows and pastures,2005,1000 ha,486
+Norway,Area,Temporary meadows and pastures,2006,1000 ha,490
+Norway,Area,Temporary meadows and pastures,2007,1000 ha,490.5
+Norway,Area,Temporary meadows and pastures,2008,1000 ha,488.4
+Norway,Area,Temporary meadows and pastures,2009,1000 ha,482.8
+Norway,Area,Temporary meadows and pastures,2010,1000 ha,476.5
+Norway,Area,Temporary meadows and pastures,2011,1000 ha,474.8
+Norway,Area,Temporary meadows and pastures,2012,1000 ha,472.9
+Norway,Area,Temporary meadows and pastures,2013,1000 ha,475.7
+Norway,Area,Temporary meadows and pastures,2014,1000 ha,478.5
+Norway,Area,Temporary meadows and pastures,2015,1000 ha,479.9
+Norway,Area,Permanent meadows and pastures,2000,1000 ha,158
+Norway,Area,Permanent meadows and pastures,2001,1000 ha,161
+Norway,Area,Permanent meadows and pastures,2002,1000 ha,163
+Norway,Area,Permanent meadows and pastures,2003,1000 ha,164
+Norway,Area,Permanent meadows and pastures,2004,1000 ha,166
+Norway,Area,Permanent meadows and pastures,2005,1000 ha,169
+Norway,Area,Permanent meadows and pastures,2006,1000 ha,172
+Norway,Area,Permanent meadows and pastures,2007,1000 ha,174.6
+Norway,Area,Permanent meadows and pastures,2008,1000 ha,175.1
+Norway,Area,Permanent meadows and pastures,2009,1000 ha,174.8
+Norway,Area,Permanent meadows and pastures,2010,1000 ha,175.8
+Norway,Area,Permanent meadows and pastures,2011,1000 ha,176.6
+Norway,Area,Permanent meadows and pastures,2012,1000 ha,176.5
+Norway,Area,Permanent meadows and pastures,2013,1000 ha,176.4
+Norway,Area,Permanent meadows and pastures,2014,1000 ha,175.6
+Norway,Area,Permanent meadows and pastures,2015,1000 ha,175.9
+Portugal,Area,Arable land and Permanent crops,2000,1000 ha,2397
+Portugal,Area,Arable land and Permanent crops,2001,1000 ha,2366
+Portugal,Area,Arable land and Permanent crops,2002,1000 ha,2379
+Portugal,Area,Arable land and Permanent crops,2003,1000 ha,2304
+Portugal,Area,Arable land and Permanent crops,2004,1000 ha,2310
+Portugal,Area,Arable land and Permanent crops,2005,1000 ha,2052
+Portugal,Area,Arable land and Permanent crops,2006,1000 ha,2032
+Portugal,Area,Arable land and Permanent crops,2007,1000 ha,1879.25
+Portugal,Area,Arable land and Permanent crops,2008,1000 ha,1943.21
+Portugal,Area,Arable land and Permanent crops,2009,1000 ha,1910.98
+Portugal,Area,Arable land and Permanent crops,2010,1000 ha,1861.57
+Portugal,Area,Arable land and Permanent crops,2011,1000 ha,1848.77
+Portugal,Area,Arable land and Permanent crops,2012,1000 ha,1855.82
+Portugal,Area,Arable land and Permanent crops,2013,1000 ha,1899.89
+Portugal,Area,Arable land and Permanent crops,2014,1000 ha,1885.01
+Portugal,Area,Arable land and Permanent crops,2015,1000 ha,1883.38
+Portugal,Area,Permanent meadows and pastures,2000,1000 ha,1433
+Portugal,Area,Permanent meadows and pastures,2001,1000 ha,1429
+Portugal,Area,Permanent meadows and pastures,2002,1000 ha,1468
+Portugal,Area,Permanent meadows and pastures,2003,1000 ha,1507
+Portugal,Area,Permanent meadows and pastures,2004,1000 ha,1507
+Portugal,Area,Permanent meadows and pastures,2005,1000 ha,1769
+Portugal,Area,Permanent meadows and pastures,2006,1000 ha,1732
+Portugal,Area,Permanent meadows and pastures,2007,1000 ha,1781.67
+Portugal,Area,Permanent meadows and pastures,2008,1000 ha,1782.65
+Portugal,Area,Permanent meadows and pastures,2009,1000 ha,1784.6
+Portugal,Area,Permanent meadows and pastures,2010,1000 ha,1792.6
+Portugal,Area,Permanent meadows and pastures,2011,1000 ha,1800.59
+Portugal,Area,Permanent meadows and pastures,2012,1000 ha,1808.59
+Portugal,Area,Permanent meadows and pastures,2013,1000 ha,1816.59
+Portugal,Area,Permanent meadows and pastures,2014,1000 ha,1816.59
+Portugal,Area,Permanent meadows and pastures,2015,1000 ha,1816.59
+Spain,Area,Arable land and Permanent crops,2000,1000 ha,18304
+Spain,Area,Arable land and Permanent crops,2001,1000 ha,18044
+Spain,Area,Arable land and Permanent crops,2002,1000 ha,17886
+Spain,Area,Arable land and Permanent crops,2003,1000 ha,17981
+Spain,Area,Arable land and Permanent crops,2004,1000 ha,17957
+Spain,Area,Arable land and Permanent crops,2005,1000 ha,17844
+Spain,Area,Arable land and Permanent crops,2006,1000 ha,17578
+Spain,Area,Arable land and Permanent crops,2007,1000 ha,17396
+Spain,Area,Arable land and Permanent crops,2008,1000 ha,17272
+Spain,Area,Arable land and Permanent crops,2009,1000 ha,17216
+Spain,Area,Arable land and Permanent crops,2010,1000 ha,17221
+Spain,Area,Arable land and Permanent crops,2011,1000 ha,16992
+Spain,Area,Arable land and Permanent crops,2012,1000 ha,17539
+Spain,Area,Arable land and Permanent crops,2013,1000 ha,17133
+Spain,Area,Arable land and Permanent crops,2014,1000 ha,17188
+Spain,Area,Arable land and Permanent crops,2015,1000 ha,17034
+Spain,Area,Temporary meadows and pastures,2003,1000 ha,1089
+Spain,Area,Temporary meadows and pastures,2004,1000 ha,1049
+Spain,Area,Temporary meadows and pastures,2005,1000 ha,1068
+Spain,Area,Temporary meadows and pastures,2006,1000 ha,1093
+Spain,Area,Temporary meadows and pastures,2007,1000 ha,1032
+Spain,Area,Temporary meadows and pastures,2008,1000 ha,962
+Spain,Area,Temporary meadows and pastures,2009,1000 ha,999
+Spain,Area,Temporary meadows and pastures,2010,1000 ha,1041
+Spain,Area,Temporary meadows and pastures,2011,1000 ha,1079
+Spain,Area,Temporary meadows and pastures,2012,1000 ha,1120
+Spain,Area,Temporary meadows and pastures,2013,1000 ha,1134
+Spain,Area,Temporary meadows and pastures,2014,1000 ha,1148
+Spain,Area,Temporary meadows and pastures,2015,1000 ha,1122
+Spain,Area,Permanent meadows and pastures,2000,1000 ha,11462
+Spain,Area,Permanent meadows and pastures,2001,1000 ha,11476
+Spain,Area,Permanent meadows and pastures,2002,1000 ha,11533
+Spain,Area,Permanent meadows and pastures,2003,1000 ha,11172
+Spain,Area,Permanent meadows and pastures,2004,1000 ha,11114
+Spain,Area,Permanent meadows and pastures,2005,1000 ha,11320
+Spain,Area,Permanent meadows and pastures,2006,1000 ha,11035
+Spain,Area,Permanent meadows and pastures,2007,1000 ha,10608
+Spain,Area,Permanent meadows and pastures,2008,1000 ha,10870
+Spain,Area,Permanent meadows and pastures,2009,1000 ha,10754
+Spain,Area,Permanent meadows and pastures,2010,1000 ha,10324
+Spain,Area,Permanent meadows and pastures,2011,1000 ha,10022
+Spain,Area,Permanent meadows and pastures,2012,1000 ha,9403
+Spain,Area,Permanent meadows and pastures,2013,1000 ha,9600.2
+Spain,Area,Permanent meadows and pastures,2014,1000 ha,9390
+Spain,Area,Permanent meadows and pastures,2015,1000 ha,9232
+Sweden,Area,Arable land and Permanent crops,2000,1000 ha,2706
+Sweden,Area,Arable land and Permanent crops,2001,1000 ha,2694
+Sweden,Area,Arable land and Permanent crops,2002,1000 ha,2680
+Sweden,Area,Arable land and Permanent crops,2003,1000 ha,2669
+Sweden,Area,Arable land and Permanent crops,2004,1000 ha,2661
+Sweden,Area,Arable land and Permanent crops,2005,1000 ha,2703
+Sweden,Area,Arable land and Permanent crops,2006,1000 ha,2660
+Sweden,Area,Arable land and Permanent crops,2007,1000 ha,2648
+Sweden,Area,Arable land and Permanent crops,2008,1000 ha,2635
+Sweden,Area,Arable land and Permanent crops,2009,1000 ha,2643
+Sweden,Area,Arable land and Permanent crops,2010,1000 ha,2634
+Sweden,Area,Arable land and Permanent crops,2011,1000 ha,2619
+Sweden,Area,Arable land and Permanent crops,2012,1000 ha,2608
+Sweden,Area,Arable land and Permanent crops,2013,1000 ha,2605
+Sweden,Area,Arable land and Permanent crops,2014,1000 ha,2597
+Sweden,Area,Arable land and Permanent crops,2015,1000 ha,2590
+Sweden,Area,Permanent meadows and pastures,2000,1000 ha,447
+Sweden,Area,Permanent meadows and pastures,2001,1000 ha,460
+Sweden,Area,Permanent meadows and pastures,2002,1000 ha,490
+Sweden,Area,Permanent meadows and pastures,2003,1000 ha,494
+Sweden,Area,Permanent meadows and pastures,2004,1000 ha,523
+Sweden,Area,Permanent meadows and pastures,2005,1000 ha,513
+Sweden,Area,Permanent meadows and pastures,2006,1000 ha,503
+Sweden,Area,Permanent meadows and pastures,2007,1000 ha,489
+Sweden,Area,Permanent meadows and pastures,2008,1000 ha,458
+Sweden,Area,Permanent meadows and pastures,2009,1000 ha,436
+Sweden,Area,Permanent meadows and pastures,2010,1000 ha,451
+Sweden,Area,Permanent meadows and pastures,2011,1000 ha,447
+Sweden,Area,Permanent meadows and pastures,2012,1000 ha,440.6
+Sweden,Area,Permanent meadows and pastures,2013,1000 ha,442.9
+Sweden,Area,Permanent meadows and pastures,2014,1000 ha,435.7
+Sweden,Area,Permanent meadows and pastures,2015,1000 ha,449.8
+Switzerland,Area,Arable land and Permanent crops,2000,1000 ha,432.7
+Switzerland,Area,Arable land and Permanent crops,2001,1000 ha,433.3
+Switzerland,Area,Arable land and Permanent crops,2002,1000 ha,432.3
+Switzerland,Area,Arable land and Permanent crops,2003,1000 ha,430.1
+Switzerland,Area,Arable land and Permanent crops,2004,1000 ha,429.8
+Switzerland,Area,Arable land and Permanent crops,2005,1000 ha,429.6
+Switzerland,Area,Arable land and Permanent crops,2006,1000 ha,430.3
+Switzerland,Area,Arable land and Permanent crops,2007,1000 ha,430
+Switzerland,Area,Arable land and Permanent crops,2008,1000 ha,429.8
+Switzerland,Area,Arable land and Permanent crops,2009,1000 ha,430
+Switzerland,Area,Arable land and Permanent crops,2010,1000 ha,428.5
+Switzerland,Area,Arable land and Permanent crops,2011,1000 ha,428
+Switzerland,Area,Arable land and Permanent crops,2012,1000 ha,428.2
+Switzerland,Area,Arable land and Permanent crops,2013,1000 ha,428.3
+Switzerland,Area,Arable land and Permanent crops,2014,1000 ha,425.7
+Switzerland,Area,Arable land and Permanent crops,2015,1000 ha,423.8
+Switzerland,Area,Temporary meadows and pastures,2001,1000 ha,118.5
+Switzerland,Area,Temporary meadows and pastures,2002,1000 ha,119
+Switzerland,Area,Temporary meadows and pastures,2003,1000 ha,122.6
+Switzerland,Area,Temporary meadows and pastures,2004,1000 ha,124.5
+Switzerland,Area,Temporary meadows and pastures,2005,1000 ha,119.1
+Switzerland,Area,Temporary meadows and pastures,2006,1000 ha,120.6
+Switzerland,Area,Temporary meadows and pastures,2007,1000 ha,126.2
+Switzerland,Area,Temporary meadows and pastures,2008,1000 ha,127.3
+Switzerland,Area,Temporary meadows and pastures,2009,1000 ha,129.8
+Switzerland,Area,Temporary meadows and pastures,2010,1000 ha,131.8
+Switzerland,Area,Temporary meadows and pastures,2011,1000 ha,133.6
+Switzerland,Area,Temporary meadows and pastures,2012,1000 ha,133.6
+Switzerland,Area,Temporary meadows and pastures,2013,1000 ha,131.1
+Switzerland,Area,Temporary meadows and pastures,2014,1000 ha,128
+Switzerland,Area,Temporary meadows and pastures,2015,1000 ha,125.5
+Switzerland,Area,Permanent meadows and pastures,2000,1000 ha,1133.3
+Switzerland,Area,Permanent meadows and pastures,2001,1000 ha,1129.3
+Switzerland,Area,Permanent meadows and pastures,2002,1000 ha,1127.2
+Switzerland,Area,Permanent meadows and pastures,2003,1000 ha,1126.1
+Switzerland,Area,Permanent meadows and pastures,2004,1000 ha,1123.4
+Switzerland,Area,Permanent meadows and pastures,2005,1000 ha,1120.4
+Switzerland,Area,Permanent meadows and pastures,2006,1000 ha,1116.5
+Switzerland,Area,Permanent meadows and pastures,2007,1000 ha,1113.5
+Switzerland,Area,Permanent meadows and pastures,2008,1000 ha,1110.8
+Switzerland,Area,Permanent meadows and pastures,2009,1000 ha,1107.5
+Switzerland,Area,Permanent meadows and pastures,2010,1000 ha,1106.1
+Switzerland,Area,Permanent meadows and pastures,2011,1000 ha,1103.6
+Switzerland,Area,Permanent meadows and pastures,2012,1000 ha,1100.5
+Switzerland,Area,Permanent meadows and pastures,2013,1000 ha,1097.4
+Switzerland,Area,Permanent meadows and pastures,2014,1000 ha,1097
+Switzerland,Area,Permanent meadows and pastures,2015,1000 ha,1085
+United Kingdom,Area,Arable land and Permanent crops,2000,1000 ha,5928
+United Kingdom,Area,Arable land and Permanent crops,2001,1000 ha,5702
+United Kingdom,Area,Arable land and Permanent crops,2002,1000 ha,5836
+United Kingdom,Area,Arable land and Permanent crops,2003,1000 ha,5708
+United Kingdom,Area,Arable land and Permanent crops,2004,1000 ha,5868
+United Kingdom,Area,Arable land and Permanent crops,2005,1000 ha,5776
+United Kingdom,Area,Arable land and Permanent crops,2006,1000 ha,6139
+United Kingdom,Area,Arable land and Permanent crops,2007,1000 ha,6131
+United Kingdom,Area,Arable land and Permanent crops,2008,1000 ha,6051
+United Kingdom,Area,Arable land and Permanent crops,2009,1000 ha,6092
+United Kingdom,Area,Arable land and Permanent crops,2010,1000 ha,6016
+United Kingdom,Area,Arable land and Permanent crops,2011,1000 ha,6107
+United Kingdom,Area,Arable land and Permanent crops,2012,1000 ha,6258
+United Kingdom,Area,Arable land and Permanent crops,2013,1000 ha,6310.3
+United Kingdom,Area,Arable land and Permanent crops,2014,1000 ha,6278.3
+United Kingdom,Area,Arable land and Permanent crops,2015,1000 ha,6060
+United Kingdom,Area,Temporary meadows and pastures,2001,1000 ha,1205
+United Kingdom,Area,Temporary meadows and pastures,2002,1000 ha,1230
+United Kingdom,Area,Temporary meadows and pastures,2003,1000 ha,1201
+United Kingdom,Area,Temporary meadows and pastures,2004,1000 ha,1246
+United Kingdom,Area,Temporary meadows and pastures,2005,1000 ha,1193
+United Kingdom,Area,Temporary meadows and pastures,2006,1000 ha,1137
+United Kingdom,Area,Temporary meadows and pastures,2007,1000 ha,1176
+United Kingdom,Area,Temporary meadows and pastures,2008,1000 ha,1141
+United Kingdom,Area,Temporary meadows and pastures,2009,1000 ha,1241
+United Kingdom,Area,Temporary meadows and pastures,2010,1000 ha,1232
+United Kingdom,Area,Temporary meadows and pastures,2011,1000 ha,1278
+United Kingdom,Area,Temporary meadows and pastures,2012,1000 ha,1357
+United Kingdom,Area,Temporary meadows and pastures,2013,1000 ha,1389.7
+United Kingdom,Area,Temporary meadows and pastures,2014,1000 ha,1395.9
+United Kingdom,Area,Temporary meadows and pastures,2015,1000 ha,1167
+United Kingdom,Area,Permanent meadows and pastures,2000,1000 ha,11036
+United Kingdom,Area,Permanent meadows and pastures,2001,1000 ha,11251
+United Kingdom,Area,Permanent meadows and pastures,2002,1000 ha,11140
+United Kingdom,Area,Permanent meadows and pastures,2003,1000 ha,11248
+United Kingdom,Area,Permanent meadows and pastures,2004,1000 ha,11183
+United Kingdom,Area,Permanent meadows and pastures,2005,1000 ha,11180
+United Kingdom,Area,Permanent meadows and pastures,2006,1000 ha,11699
+United Kingdom,Area,Permanent meadows and pastures,2007,1000 ha,11516
+United Kingdom,Area,Permanent meadows and pastures,2008,1000 ha,11633
+United Kingdom,Area,Permanent meadows and pastures,2009,1000 ha,11233
+United Kingdom,Area,Permanent meadows and pastures,2010,1000 ha,11208
+United Kingdom,Area,Permanent meadows and pastures,2011,1000 ha,11057
+United Kingdom,Area,Permanent meadows and pastures,2012,1000 ha,10924
+United Kingdom,Area,Permanent meadows and pastures,2013,1000 ha,10939.9
+United Kingdom,Area,Permanent meadows and pastures,2014,1000 ha,10953.7
+United Kingdom,Area,Permanent meadows and pastures,2015,1000 ha,11078
