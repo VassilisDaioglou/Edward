@@ -111,8 +111,8 @@ NLAgHist=melt(NLAgHist, id.vars=c("Variable","Source"), na.rm=TRUE)
 colnames(NLAgHist)[3] <-"Year"
 NLAgHist$Year = as.numeric(substr(NLAgHist$Year, start=2, stop=5))
 NLAgHist$value = as.numeric(substr(NLAgHist$value, start=1, stop=5))
-NLAgHist$VarOrder = factor(NLAgHist$Variable, levels=c("Milk_per_animal","LU_per_animal","CH4_per_animal","Milk_EI_perDM","Milk_EI_perHa",
-                                                       "Crop_Yield","Cropland","N_AppRate","Crop_EIAdm","Crop_EIAha"))
+NLAgHist$VarOrder = factor(NLAgHist$Variable, levels=c("Crop_EIAdm","Crop_EIAha","Milk_per_animal","LU_per_animal","CH4_per_animal","Milk_EI_perDM","Milk_EI_perHa",
+                                                       "Crop_Yield","Cropland","N_AppRate"))
 
 # Agricultural Production
 WEU_Prod.in=read.csv("data/FAO_EU_Production.csv", sep=",", dec=".", stringsAsFactors = FALSE, colClasses = "character")
@@ -354,7 +354,6 @@ Coef <- c(coef(summary(fit))["Year","Estimate"],coef(summary(fit))["(Intercept)"
 SSP_all.NLb = SSP_all.NLb %>% mutate(EmisCH4LandUse_NL = EmisCH4LandUse * (Coef[1]*Year+Coef[2]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(EmisN2OLandUse_NL = EmisN2OLandUse * (Coef[1]*Year+Coef[2]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(EmisCO2LandUse_NL = EmisCO2LandUse * (Coef[1]*Year+Coef[2]))
-#SSP_all.NLb = SSP_all.NLb %>% mutate(NLFrac =EmisN2OLandUse_NL / EmisN2OLandUse)
 SSP_all.NLb = subset(SSP_all.NLb, select=-c(EmisCH4LandUse,EmisN2OLandUse,EmisCO2LandUse))
 names(SSP_all.NLb)[names(SSP_all.NLb) == "EmisCH4LandUse_NL"] = "EmisCH4LandUse"
 names(SSP_all.NLb)[names(SSP_all.NLb) == "EmisN2OLandUse_NL"] = "EmisN2OLandUse"
@@ -402,7 +401,6 @@ Coef_Prod$Intercept = as.numeric(substr(Coef_Prod$Intercept, start=1, stop=5))
 SSP_all.NLb = SSP_all.NLb %>% mutate(AgriProdCropsEnergy_NL = AgriProdCropsEnergy * (Coef_Prod$Gradient[Coef_Prod$Group=="Crops"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Crops"]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(AgriProdCropsNonEnergy_NL = AgriProdCropsNonEnergy * (Coef_Prod$Gradient[Coef_Prod$Group=="Crops"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Crops"]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(AgriProdLivestock_NL = AgriProdLivestock * (Coef_Prod$Gradient[Coef_Prod$Group=="Meat"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Meat"]))
-# SSP_all.NLb = SSP_all.NLb %>% mutate(NLFrac = AgriProdLivestock_NL / AgriProdLivestock)
 SSP_all.NLb = subset(SSP_all.NLb, select=-c(AgriProdCropsEnergy,AgriProdCropsNonEnergy,AgriProdLivestock))
 names(SSP_all.NLb)[names(SSP_all.NLb) == "AgriProdCropsEnergy_NL"] = "AgriProdCropsEnergy"
 names(SSP_all.NLb)[names(SSP_all.NLb) == "AgriProdCropsNonEnergy_NL"] = "AgriProdCropsNonEnergy"
@@ -444,7 +442,6 @@ Coef_Prod$Intercept = as.numeric(substr(Coef_Prod$Intercept, start=1, stop=5))
 SSP_all.NLb = SSP_all.NLb %>% mutate(LandCropland_NL = LandCropland * (Coef_Prod$Gradient[Coef_Prod$Group=="Cropland"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Cropland"]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(LandOtherArableLand_NL = LandOtherArableLand * (Coef_Prod$Gradient[Coef_Prod$Group=="Cropland"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Cropland"]))
 SSP_all.NLb = SSP_all.NLb %>% mutate(LandPasture_NL = LandPasture * (Coef_Prod$Gradient[Coef_Prod$Group=="Pasture"] * Year + Coef_Prod$Intercept[Coef_Prod$Group=="Pasture"]))
-# SSP_all.NLb = SSP_all.NLb %>% mutate(NLFrac = LandCropland_NL / LandCropland)
 SSP_all.NLb = subset(SSP_all.NLb, select=-c(LandCropland,LandOtherArableLand,LandPasture))
 names(SSP_all.NLb)[names(SSP_all.NLb) == "LandCropland_NL"] = "LandCropland"
 names(SSP_all.NLb)[names(SSP_all.NLb) == "LandOtherArableLand_NL"] = "LandOtherArableLand"
@@ -524,8 +521,6 @@ HistEmis=subset(SSP_all.NLa, VarID2=="Emis"&!(Unit=="kt N2O/yr")&(Year=="1981"|Y
 SSP_all.NLc=rbind(SSP_all.NLc,HistEmis)
 # Scale Agricultural Production to GDP share
 
-
-
 # Scale Land Use to GDP Share
 
 SSP_all.NLc$Region <- "NL_2"
@@ -566,7 +561,7 @@ SSP_all.LC = melt(SSP_all.LC, id.vars=c("Model","Scenario","Year","Region"))
 
 #
 # ---- CALCULATIONS EMISSIONS ----
-SSP_all.EM = subset(SSP_all.EM, select=c(Model,Scenario,Year,Region,EmisCO2LandUse,EmisCH4LandUse,EmisN2OLandUse))
+SSP_all.EM = subset(SSP_all.EM, select=c(Model,Scenario,Year,Region,EmisCO2LandUse,EmisCH4LandUse,EmisN2OLandUse,EmisCO2FossilFuelsandIndustry))
 SSP_all.EM = melt(SSP_all.EM, id.vars=c("Model","Scenario","Year","Region"))
 SSP_all.EM = spread(SSP_all.EM,Year,value)
 
@@ -618,8 +613,7 @@ names(SSP_all.EMtemp)[names(SSP_all.EMtemp) == "value1"] = "value"
 SSP_all.EM2 = rbind(SSP_all.EMtemp,SSP_all.EMtemp1)
 #Total Emissions (have to correct due to NL calibration)
 SSP_all.EM2 = spread(SSP_all.EM2,variable,value)
-#SSP_all.EM2 = SSP_all.EM2 %>% mutate(TotalEmissions=EmisCO2LandUse+EmisCH4LandUse+EmisN2OLandUse)
-SSP_all.EM2 = SSP_all.EM2 %>% mutate(TotalEmissions=EmisCH4LandUse+EmisN2OLandUse)
+SSP_all.EM2 = SSP_all.EM2 %>% mutate(TotalAgrEmissions=EmisCH4LandUse+EmisN2OLandUse)
 SSP_all.EM2 = melt(SSP_all.EM2, id.vars=c("Model","Scenario","Year","Region"))
 
 #
@@ -660,8 +654,8 @@ rm(l,i,j,k,m,YearCount,temp,Mean)
 EIA = rbind(SSP_all.LC,SSP_all.EM2,SSP_all.AP2)
 EIA = spread(EIA,variable,value)
 
-EIA = EIA %>% mutate(EIA_DM=TotalEmissions/TotalProduction) # MtCO2e/t-DM
-EIA = EIA %>% mutate(EIA_Ha=TotalEmissions/TotalLandUse)    # tCO2e/Ha (MtCO2e/MHa)
+EIA = EIA %>% mutate(EIA_DM=TotalAgrEmissions/TotalProduction) # MtCO2e/t-DM
+EIA = EIA %>% mutate(EIA_Ha=TotalAgrEmissions/TotalLandUse)    # tCO2e/Ha (MtCO2e/MHa)
 EIA = melt(EIA, id.vars=c("Model","Scenario","Year","Region"))
 EIA$Year[EIA$Year=="1981"]<-"1980"
 EIA$Year = as.numeric(substr(EIA$Year, start=1, stop=4))
@@ -706,7 +700,6 @@ AgriProd = AgriProd %>% mutate(FSU=UKR+RUS+STAN)
 AgriProd = AgriProd %>% mutate(ASIA=CHN+JAP+INDIA+SEAS+RSAS+TUR+INDO+KOR)
 AgriProd=melt(AgriProd, id.vars=c("Model","Scenario","variable","Year"))
 colnames(AgriProd)[5] <- "Region2"
-# AgriProd=subset(AgriProd, Region2=="NAM"|Region2=="LAM"|Region2=="EU"|Region2=="AFR"|Region2=="FSU"|Region2=="ASIA"|Region2=="ME"|Region2=="OCE"|Region2=="World")
 
 # Fraction of global production
 AgriProd.frac=matrix(ncol=6, nrow = length(unique(AgriProd$Year)) * length(unique(AgriProd$Region2)) * length(unique(AgriProd$Scenario)))
@@ -787,21 +780,21 @@ AgrProdDat = AgrProdDat %>% mutate(x100_10_diff=x2100-x2010)
 EIADat = subset(EIA, variable=="EIA_DM"|variable=="EIA_Ha")
 EIADat = na.omit(EIADat)
 EIADat = spread(EIADat,Year,value)
-for(i in 7:18) {colnames(EIADat)[i] <- paste("x",colnames(EIADat[i]),sep="")}
+for(i in 8:19) {colnames(EIADat)[i] <- paste("x",colnames(EIADat[i]),sep="")}
 EIADat = EIADat %>% mutate(x50_10_Change=((x2050-x2010)/x2010)*100)
 EIADat = EIADat %>% mutate(x50_10_diff=x2050-x2010)
 EIADat = EIADat %>% mutate(x100_10_diff=x2100-x2010)
 
 EIADat2 = subset(EIADat, select=-c(Model,RegOrder))
 # EIA decomposition
-EIADecomp = subset(EIA, variable=="TotalProduction"|variable=="TotalEmissions"|variable=="TotalLandUse"|variable=="EIA_DM"|variable=="EIA_Ha")
+EIADecomp = subset(EIA, variable=="TotalProduction"|variable=="TotalAgrEmissions"|variable=="TotalLandUse"|variable=="EIA_DM"|variable=="EIA_Ha")
 EIADecomp = na.omit(EIADecomp)
 EIADecomp = spread(EIADecomp,variable,value)
 
-EIADecomp = EIADecomp %>% mutate(EIA_DM_EmisComp=TotalEmissions/EIADecomp$TotalProduction[EIADecomp$Year=="2010"])
-EIADecomp = EIADecomp %>% mutate(EIA_DM_DMComp=TotalEmissions[EIADecomp$Year=="2010"]/EIADecomp$TotalProduction)
-EIADecomp = EIADecomp %>% mutate(EIA_Ha_EmisComp=TotalEmissions/EIADecomp$TotalLandUse[EIADecomp$Year=="2010"])
-EIADecomp = EIADecomp %>% mutate(EIA_Ha_DMComp=TotalEmissions[EIADecomp$Year=="2010"]/EIADecomp$TotalLandUse)
+EIADecomp = EIADecomp %>% mutate(EIA_DM_EmisComp=TotalAgrEmissions/EIADecomp$TotalProduction[EIADecomp$Year=="2010"])
+EIADecomp = EIADecomp %>% mutate(EIA_DM_DMComp=TotalAgrEmissions[EIADecomp$Year=="2010"]/EIADecomp$TotalProduction)
+EIADecomp = EIADecomp %>% mutate(EIA_Ha_EmisComp=TotalAgrEmissions/EIADecomp$TotalLandUse[EIADecomp$Year=="2010"])
+EIADecomp = EIADecomp %>% mutate(EIA_Ha_DMComp=TotalAgrEmissions[EIADecomp$Year=="2010"]/EIADecomp$TotalLandUse)
 
 #
 # ---- DFs FOR FIGURES ----
@@ -818,7 +811,8 @@ AgProd = subset(AgProd, Region=="EU"|Region=="World"|Region=="NL"|Region=="NL_1"
 
 Socio = subset(SSP_all, Variable=="Population"|
                       Variable=="AgriDemCropsFood"|Variable=="AgriDemCropsFeed"|Variable=="AgriDemLivestockFood"|
-                      Variable=="YieldCereal")
+                      Variable=="YieldCereal"|
+                      Variable=="LandCropland"|Variable=="LandCroplandEnergyCrops"|Variable=="LandOtherArableLand"|Variable=="LandPasture")
 Socio = subset(Socio, select=-c(VarID,VarID2,Unit))
 colnames(Socio)[3]<-"variable"
 Socio = rbind(Socio,subset(SSP_all.LC, variable=="TotalLandUse"))
@@ -834,6 +828,10 @@ Socio$Unit[Socio$variable=="AgriDemCropsFood"] <- "MtDM/yr"
 Socio$Unit[Socio$variable=="AgriDemLivestockFood"] <- "MtDM/yr"
 Socio$Unit[Socio$variable=="Population"] <- "Million"
 Socio$Unit[Socio$variable=="TotalLandUse"] <- "MHa"
+Socio$Unit[Socio$variable=="LandCropland"] <- "MHa"
+Socio$Unit[Socio$variable=="LandCroplandEnergyCrops"] <- "MHa"
+Socio$Unit[Socio$variable=="LandOtherArableLand"] <- "MHa"
+Socio$Unit[Socio$variable=="LandPasture"] <- "MHa"
 Socio$Unit[Socio$variable=="YieldCereal"] <- "tDM/Ha/yr"
 Socio$Unit[Socio$variable=="YieldIndex"] <- "2010=1"
 Socio$Unit[Socio$variable=="AgriDemCropsFeed_PerCap"] <- "tDM/cap/yr"
@@ -852,10 +850,10 @@ EmisTot = subset(EmisTot, Variable=="EmisCH4LandUse"|
                    Variable=="EmisN2OEnergySupplyandDem")
 # 
 # # # ---- NUMERIC OUTPUTS ----
-# write.xlsx(EmisDat, file="output/Results.xlsx", sheetName="Emissions", row.names=FALSE, showNA = TRUE)
-# write.xlsx(EIADat2, file="output/Results.xlsx", sheetName="EIA", append=TRUE, row.names=FALSE, showNA = TRUE)
-# write.xlsx(Socio2, file="output/Results.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
-# write.xlsx(AgrProdDat, file="output/Results.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(EmisDat, file="output/Results_v10.xlsx", sheetName="Emissions", row.names=FALSE, showNA = TRUE)
+# write.xlsx(EIADat2, file="output/Results_v10.xlsx", sheetName="EIA", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(Socio2, file="output/Results_v10.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(AgrProdDat, file="output/Results_v10.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
 #
 # ---- LABELS ----
 var_labels <- c("Population"="Population (Mil.)",
@@ -868,7 +866,7 @@ var_labels <- c("Population"="Population (Mil.)",
                   "TotalLandUse"="Land Use (MHa)",
                   "AgriDemCropsFood_PerCap"="Food Crops Demand (tDM/Cap)",
                   "AgriDemLivestockFood_PerCap"="Livestock Demand (tDM/cap)",
-                  "TotalEmissions"="Agricultural Emissions (MtCO2-eq/yr)",
+                  "TotalAgrEmissions"="Agricultural Emissions (MtCO2-eq/yr)",
                   "TotalProduction"="Agricultural Production (MtDM/yr)")
 scen_labels <-c("SSP1_450"="SSP1-2C",
                 "SSP2_450"="SSP2-2C",
@@ -924,14 +922,15 @@ colnames(temp) <- c("Scenario","variable","Year","Region","value","Model")
 AllInd=rbind(subset(Socio, select=-c(VarOrder,Unit)),SSP_all.EM2,temp)
 rm(temp)
 
-AllIndFig=subset(AllInd, Year>1999&Region=="WEU"&(variable=="Population"|variable=="TotalEmissions"|variable=="TotalProduction"|variable=="TotalLandUse"|variable=="AgriDemCropsFood_PerCap"|variable=="AgriDemLivestockFood_PerCap"))
-AllIndFig$VarOrder = factor(AllIndFig$variable, levels =c("Population","TotalEmissions","TotalProduction","TotalLandUse","AgriDemCropsFood_PerCap","AgriDemLivestockFood_PerCap"))
+AllIndFig=subset(AllInd, Year>1999&Region=="WEU"&(variable=="Population"|variable=="TotalAgrEmissions"|variable=="TotalProduction"|variable=="TotalLandUse"|variable=="AgriDemCropsFood_PerCap"|variable=="AgriDemLivestockFood_PerCap"))
+AllIndFig$VarOrder = factor(AllIndFig$variable, levels =c("Population","TotalAgrEmissions","TotalProduction","TotalLandUse","AgriDemCropsFood_PerCap","AgriDemLivestockFood_PerCap"))
 
 FigSSP_15 <-ggplot(data=subset(AllIndFig, Scenario=="SSP1_20"|Scenario=="SSP2_20"), aes(x=Year, y=value, colour=Scenario)) + 
   geom_line(size=1)+
   geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) + theme_bw() + ylab("")+xlab("") +
+  ggtitle("a. Socioeconomic Projections for 1.5C target") + theme(plot.title = element_text(face="plain", size=FontSize)) +
   theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
-  theme(legend.title=element_blank(), legend.position="bottom") + theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+  theme(legend.title=element_blank(), legend.position="none") + theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(strip.background = element_blank()) + 
   scale_colour_manual(values=c("forestgreen", "blue"),name ="Scenario",breaks=c("SSP1_20","SSP2_20"),labels=c("SSP1-1.5C","SSP2-1.5C")) +
   facet_wrap(~VarOrder,strip.position = "top", scales="free_y", labeller=labeller(VarOrder = var_labels))
@@ -940,14 +939,17 @@ FigSSP_15
 FigSSP_2  <-ggplot(data=subset(AllIndFig, Scenario=="SSP1_450"|Scenario=="SSP2_450"), aes(x=Year, y=value, colour=Scenario)) + 
   geom_line(size=1)+
   geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) + theme_bw() + ylab("")+xlab("") +
+  ggtitle("b. Socioeconomic Projections for 2C target") + theme(plot.title = element_text(face="plain", size=FontSize)) +
   theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
   theme(legend.title=element_blank(), legend.position="bottom") + theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(strip.background = element_blank()) + 
-  scale_colour_manual(values=c("forestgreen", "blue"),name ="Scenario",breaks=c("SSP1_450","SSP2_450"),labels=c("SSP1-2C","SSP2-2C")) +
+  scale_colour_manual(values=c("forestgreen", "blue"),name ="Scenario",breaks=c("SSP1_450","SSP2_450"),labels=c("SSP1","SSP2")) +
   facet_wrap(~VarOrder,strip.position = "top", scales="free_y", labeller=labeller(VarOrder = var_labels))
 FigSSP_2
 
-
+lay<-rbind(1,1,1,1,1,1,1,1,1,1,1,1,
+           2,2,2,2,2,2,2,2,2,2,2,2,2,2)
+FigS6 <-grid.arrange(FigSSP_15,FigSSP_2,layout_matrix=lay)
 # ---- FIG: EIA WORLD----
 # EIA World
 # ---- ***SSP1-450 ----
@@ -970,13 +972,13 @@ FigProdWorldSSP1_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="T
   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP1_26
 
-FigEmisWorldSSP1_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisWorldSSP1_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 FigEmisWorldSSP1_26
 
 # ---- ***SSP2-450 ----
@@ -999,13 +1001,13 @@ FigProdWorldSSP2_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="T
   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP2_26
 
-FigEmisWorldSSP2_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisWorldSSP2_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 FigEmisWorldSSP2_26
 
 #
@@ -1029,13 +1031,13 @@ FigProdWorldSSP1_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="T
   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP1_19
 
-FigEmisWorldSSP1_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisWorldSSP1_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 FigEmisWorldSSP1_19
 
 # ---- ***SSP2-20 ----
@@ -1058,13 +1060,13 @@ FigProdWorldSSP2_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="T
   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock")) 
 FigProdWorldSSP2_19
 
-FigEmisWorldSSP2_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisWorldSSP2_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize, hjust=1), axis.text.y = element_text(size=FontSize)) +
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
+  scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
 FigEmisWorldSSP2_19
 #
 # ---- ***Consolidated ----
@@ -1086,40 +1088,57 @@ rm(layout)
 #
 # ---- FIG: EIA ALL REGIONS ----
 # EIA All Regions
-plot_list = list()
-for(i in unique(EIA$Scenario)){
+# These will make up 2 figures, each with 2 panels
+# Figure 1: SSP1, Figure 2: SSP2
+# Panel A: RCP1.9, Panel B: RCP2.6
+# Panel As should not have a legend
+plot_listA = list()
+for(i in c("SSP1_20","SSP2_20")){
 Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="WEU"|Region=="CEU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
                      aes(x=Year, y=value, colour=variable)) + 
-  geom_line(size=0.4)+
-  geom_hline(yintercept=0,size = 0.1, colour='black') +
+  geom_line(size=0.4)+  geom_hline(yintercept=0,size = 0.1, colour='black') +
+  ggtitle("a.") + theme(plot.title = element_text(face="bold", size=7)) +
   xlim(2010,2050) +
-  #coord_cartesian(ylim=c(0, 15)) +
   theme_bw() +
   theme(text= element_text(size=8, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
-  theme(legend.position="bottom", legend.text = element_text(size=10, face="plain")) +
+  theme(legend.position="none", legend.text = element_text(size=10, face="plain")) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  ylab("") +
-  xlab("") +
+  ylab("") + xlab("") +
   scale_colour_manual(values=c("firebrick", "forestgreen"),
                      name ="",
-                     breaks=c("EIA_DM","EIA_Ha"),
-#                     labels=c(expression("per t"["DM"],"per Ha"))) +
-                     #labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha)))) +
-                      labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
+                     breaks=c("EIA_DM","EIA_Ha")) +
   facet_wrap(~RegOrder, ncol = 5, labeller=labeller(Scenario = scen_labels, RegOrder = reg_labels))
-plot_list[[i]] = Fig
-
-
+plot_listA[[i]] = Fig
 }
-plot_list[[4]]
 
+plot_listB = list()
+for(i in c("SSP1_450","SSP2_450")){
+  Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="WEU"|Region=="CEU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
+              aes(x=Year, y=value, colour=variable)) + 
+    geom_line(size=0.4)+  geom_hline(yintercept=0,size = 0.1, colour='black') +
+    ggtitle("b.") + theme(plot.title = element_text(face="bold", size=7)) +
+    xlim(2010,2050) +
+    theme_bw() +
+    theme(text= element_text(size=8, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
+    theme(legend.position="bottom", legend.text = element_text(size=10, face="plain")) +
+    theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+    ylab("") +  xlab("") +
+    scale_colour_manual(values=c("firebrick", "forestgreen"),
+                        name ="",
+                        breaks=c("EIA_DM","EIA_Ha"), 
+                        labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha]," (",tCO[2],-eq/Ha,")")))) +
+    facet_wrap(~RegOrder, ncol = 5, labeller=labeller(Scenario = scen_labels, RegOrder = reg_labels))
+  plot_listB[[i]] = Fig
+}
+
+FigS3 <-grid.arrange(plot_listA[["SSP1_20"]],plot_listB[["SSP1_450"]],ncol=1)
+FigS4 <-grid.arrange(plot_listA[["SSP2_20"]],plot_listB[["SSP2_450"]],ncol=1)
 
 FigWorldWEU<-ggplot(data=subset(EIA, Year>1999&(Region=="WEU"|Region=="World")&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
             aes(x=Year, y=value, colour=variable)) + 
   geom_line(size=0.4)+
   geom_hline(yintercept=0,size = 0.1, colour='black') +
   xlim(2010,2050) +
-  #coord_cartesian(ylim=c(0, 15)) +
   theme_bw() +
   theme(text= element_text(size=8, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
   theme(legend.position="bottom", legend.text = element_text(size=10, face="plain")) +
@@ -1129,7 +1148,6 @@ FigWorldWEU<-ggplot(data=subset(EIA, Year>1999&(Region=="WEU"|Region=="World")&(
   scale_colour_manual(values=c("firebrick", "forestgreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
-                      #                     labels=c(expression("per t"["DM"],"per Ha"))) +
                       labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
   facet_grid(ScenOrder~Region, labeller=labeller(ScenOrder = scen_labels, RegOrder = reg_labels))
 FigWorldWEU
@@ -1262,7 +1280,7 @@ FigProdNL <- ggplot(data=subset(AgProd, Region=="NL"&!(variable=="TotalProductio
                     labels=c("Energy crops","Food and feed","Livestock")) 
 FigProdNL
 
-FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +
   geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +
@@ -1274,7 +1292,7 @@ FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalEmissions")
   xlim(2000,2060) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),
                     name="",
-                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),
+                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),
                     labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
 FigEmisNL
 
@@ -1303,9 +1321,9 @@ FigEIA
 
 #
 # ---- FIG: EMISSIONS COMPONENTS----
-FigEmisEU <- ggplot(data=subset(Emis, Region=="EU"&!(variable=="TotalEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisEU <- ggplot(data=subset(Emis, Region=="EU"&!(variable=="TotalAgrEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +
-  geom_line(data=subset(Emis, Region=="EU"&variable=="TotalEmissions"), aes(x=Year, y = value)) +
+  geom_line(data=subset(Emis, Region=="EU"&variable=="TotalAgrEmissions"), aes(x=Year, y = value)) +
   geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +
   theme(text= element_text(size=6, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
@@ -1315,34 +1333,32 @@ FigEmisEU <- ggplot(data=subset(Emis, Region=="EU"&!(variable=="TotalEmissions")
   xlim(2000,2060) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),
                     name="",
-                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),
+                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),
                     labels=c("CH4","CO2","N2O","Total"),
                     guide=FALSE
   ) +
   facet_grid(Region ~ Scenario, scales="free_y", labeller=labeller(Scenario=scen_labels))
 FigEmisEU
 
-FigEmisWo <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisWo <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions"|variable=="EmisCO2FossilFuelsandIndustry")&(Year==2010|Year==2020|Year==2030|Year==2040|Year==2050)), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +
-  geom_line(data=subset(Emis, Region=="World"&variable=="TotalEmissions"), aes(x=Year, y = value)) +
   geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +
   theme(text= element_text(size=6, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   xlab("") +
-  xlim(2000,2060) +
-  scale_fill_manual(values=c("bisque","coral4","black"),
+  scale_fill_manual(values=c("bisque","coral4"),
                     name="",
-                    breaks=c("EmisCH4LandUse","EmisN2OLandUse","TotalEmissions"),
-                    labels=c(expression(CH[4]),expression(paste(N[2],"O")),"Total")
+                    breaks=c("EmisCH4LandUse","EmisN2OLandUse"),
+                    labels=c(expression(CH[4]),expression(paste(N[2],"O")))
   ) +
   facet_grid(Region ~ Scenario, scales="free_y", labeller=labeller(Scenario=scen_labels))
 FigEmisWo
 
-FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalAgrEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +
-  geom_line(data=subset(Emis, Region=="NL"&variable=="TotalEmissions"), aes(x=Year, y = value)) +
+  geom_line(data=subset(Emis, Region=="NL"&variable=="TotalAgrEmissions"), aes(x=Year, y = value)) +
   geom_hline(yintercept=0,size = 0.1, colour='black') +
   theme_bw() +
   theme(text= element_text(size=6, face="plain"), axis.text.x = element_text(angle=66, size=6, hjust=1), axis.text.y = element_text(size=6)) +
@@ -1352,7 +1368,7 @@ FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalEmissions")
   xlim(2000,2060) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),
                     name="",
-                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),
+                    breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),
                     labels=c("CH4","CO2","N2O","Total")
   ) +
   facet_grid(Region ~ Scenario, scales="free_y", labeller=labeller(Scenario=scen_labels))
@@ -1432,11 +1448,6 @@ Ctax<-ggplot(data=subset(SSP_all.R, Year>1999&Region=="World"&Variable=="PriceCa
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   ylab(expression(paste(US[2010],"/tCO"[2],""))) +
   xlab("") +
-  # scale_colour_manual(values=c("firebrick", "forestgreen"),
-  #                     name ="",
-  #                     breaks=c("EIA_DM","EIA_Ha"),
-  #                     labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha)))) +
-  # scale_linetype_manual(values=c("solid","twodash"), name="Downscaling Method",breaks=c("NL","NL_1"),labels=c("(i)","(ii)")) +
   facet_grid( .~Scenario, labeller=labeller(Scenario = scen_labels))
 Ctax
 #
@@ -1448,7 +1459,7 @@ FigEmisTot<-ggplot(data=subset(EmisTot, Year>1999&Region=="World"),aes(x=Year, y
   xlim(2010,2050) +
   theme_bw() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
+  theme(legend.position="right", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   xlab("") +
@@ -1521,68 +1532,56 @@ FigAgProdFrac <-ggplot(data=subset(AgriProd, !(Region2=="World")&variable=="Agri
   facet_grid(. ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels))
 FigAgProdFrac
 
-#layout<-rbind(c(1,2),c(1,2),c(3,3))
-#FigSoc <- grid.arrange(FigSocEU,FigSocWo,FigCtax,layout_matrix=layout1)
-FigAgr <- grid.arrange(FigAgProd,FigAgProdFrac,FigTrad)#,layout_matrix=matrix(1,nrow=1,ncol=2))
-#rm(layout)
+FigAgr <- grid.arrange(FigAgProd,FigAgProdFrac,FigTrad)
 
 #
 # ---- FIG: NL Historic EF ----
 NL_EIA_Liv<-ggplot() +
-  geom_line(data=subset(NLAgHist, !(Source=="Agricultural Soils")&Variable=="CH4_per_animal"|Variable=="Milk_per_animal"|Variable=="LU_per_animal"),aes(x=Year, y=value, colour=VarOrder), size=0.5, linetype="dashed") + 
-  geom_line(data=subset(NLAgHist, !(Source=="Agricultural Soils")&Variable=="Milk_EI_perDM"|Variable=="Milk_EI_perHa"),aes(x=Year, y=value, colour=VarOrder), size=1) + 
+  geom_line(data=subset(NLAgHist, !(Source=="Agricultural Soils")&Variable=="CH4_per_animal"|Variable=="Milk_per_animal"|Variable=="LU_per_animal"|Variable=="Milk_EI_perDM"|Variable=="Milk_EI_perHa"),
+            aes(x=Year, y=value, colour=VarOrder, linetype=VarOrder, size=VarOrder)) + 
   geom_hline(yintercept=0,size = 0.1, colour='black') +
-  ggtitle("Trends for Dairy Cattle") + theme(plot.title = element_text(lineheight=20, face="bold")) +
+  ggtitle("a.") + theme(plot.title = element_text(lineheight=20, face="bold")) +
   coord_cartesian(ylim=c(0.5, 1.6, 0.2)) + ylab("Index (1=1990)") + xlab("") + theme_bw() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
   theme(legend.position="right", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  scale_colour_manual(values=c("black","slategray3", "firebrick","forestgreen","tan"),
-                      name ="",breaks=c("Milk_per_animal",
-                                        "LU_per_animal",
-                                        "CH4_per_animal",
-                                        "Milk_EI_perDM",
-                                        "Milk_EI_perHa"),
-                      labels=c(expression(paste("Productivity (",kg[Milk],"/Animal/yr)"),
-                                          "Stocking Rate (Animal/ha)",
-                                          paste("Emission Factor (",kgCH[4],"/Animal)"),
-                                          paste(EIA[DM],", ",kgCH[4],"/",kg[Milk]),
-                                          paste(EIA[Ha],", ",kgCH[4],"/ha"))))+
+  scale_colour_manual(values=c("tan","slategray3","black","firebrick","forestgreen"),
+                      name ="",breaks=c("Milk_EI_perDM","Milk_EI_perHa","Milk_per_animal","LU_per_animal","CH4_per_animal"),
+                      labels=c(expression(paste(EIA[DM]," (",kgCH[4],"/",kg[Milk],")"),paste(EIA[Ha]," (",kgCH[4],"/ha",")"),paste("Productivity (",kg[Milk],"/Animal/yr)"),"Stocking Rate (Animal/ha)",paste("Emission Factor (",kgCH[4],"/Animal)"))))+
+  scale_linetype_manual(values = c(2,2,2,1,1),
+                        name ="",breaks=c("Milk_EI_perDM","Milk_EI_perHa","Milk_per_animal","LU_per_animal","CH4_per_animal"),
+                        labels=c(expression(paste(EIA[DM]," (",kgCH[4],"/",kg[Milk],")"),paste(EIA[Ha]," (",kgCH[4],"/ha",")"),paste("Productivity (",kg[Milk],"/Animal/yr)"),"Stocking Rate (Animal/ha)",paste("Emission Factor (",kgCH[4],"/Animal)"))))+
+  scale_size_manual(values = c(0.5,0.5,0.5,1,1),
+                        name ="",breaks=c("Milk_EI_perDM","Milk_EI_perHa","Milk_per_animal","LU_per_animal","CH4_per_animal"),
+                    labels=c(expression(paste(EIA[DM]," (",kgCH[4],"/",kg[Milk],")"),paste(EIA[Ha]," (",kgCH[4],"/ha",")"),paste("Productivity (",kg[Milk],"/Animal/yr)"),"Stocking Rate (Animal/ha)",paste("Emission Factor (",kgCH[4],"/Animal)"))))+
   facet_grid(~Source)
 NL_EIA_Liv
 
 NL_EIA_Crop<-ggplot() +
-  geom_line(data=subset(NLAgHist, Source=="Agricultural Soils"&(Variable=="Crop_EIAdm"|Variable=="Crop_EIAha")),aes(x=Year, y=value, colour=VarOrder), size=1) + 
-  geom_line(data=subset(NLAgHist, Source=="Agricultural Soils"&(Variable=="Crop_Yield"|Variable=="N_AppRate"|Variable=="Cropland")),aes(x=Year, y=value, colour=VarOrder), size=0.5, linetype="dashed") + 
+  geom_line(data=subset(NLAgHist, Source=="Agricultural Soils"&(Variable=="Crop_EIAdm"|Variable=="Crop_EIAha"|Variable=="Crop_Yield"|Variable=="N_AppRate"|Variable=="Cropland")),aes(x=Year, y=value, colour=VarOrder, linetype=VarOrder, size=VarOrder)) + 
   geom_hline(yintercept=0,size = 0.1, colour='black') +
-  ggtitle("Trends for Cropland") + theme(plot.title = element_text(lineheight=20, face="bold")) +
+  ggtitle("b.") + theme(plot.title = element_text(lineheight=20, face="bold")) +
   coord_cartesian(ylim=c(0.5, 1.6)) + ylab("Index (1=1990)") + xlab("") + theme_bw() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
   theme(legend.position="right", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  scale_colour_manual(values=c("firebrick","forestgreen", "tan","slategray3","black"),
-                      name ="",breaks=c("Crop_Yield",
-                                        "Cropland",
-                                        "N_AppRate",
-                                        "Crop_EIAdm",
-                                        "Crop_EIAha"),
-                      labels=c(expression("Crop Yields (t/ha)",
-                                          "Cropland (ha)",
-                                          "Nitrogen Application (kgN/ha/yr)",
-                                          paste(EIA[DM],", ",kgN[2],"O/",kg[Crop]),
-                                          paste(EIA[Ha],", ",kgN[2],"O/ha"))))+
+  scale_colour_manual(values=c("firebrick","forestgreen","tan","slategray3","black"),
+                      name ="",breaks=c("Crop_EIAdm","Crop_EIAha","Crop_Yield","Cropland","N_AppRate"),
+                      labels=c(expression(paste(EIA[DM]," (",kgN[2],"O/",kg[Crop],")"),paste(EIA[Ha],"(",kgN[2],"O/ha",")"),"Crop Yields (t/ha)","Cropland (ha)","Nitrogen Application (kgN/ha/yr)")))+
+  scale_linetype_manual(values = c(1,1,2,2,2),
+                        name ="",breaks=c("Crop_EIAdm","Crop_EIAha","Crop_Yield","Cropland","N_AppRate"),
+                        labels=c(expression(paste(EIA[DM]," (",kgN[2],"O/",kg[Crop],")"),paste(EIA[Ha],"(",kgN[2],"O/ha",")"),"Crop Yields (t/ha)","Cropland (ha)","Nitrogen Application (kgN/ha/yr)")))+
+  scale_size_manual(values = c(1,1,0.5,0.5,0.5),
+                    name ="",breaks=c("Crop_EIAdm","Crop_EIAha","Crop_Yield","Cropland","N_AppRate"),
+                    labels=c(expression(paste(EIA[DM]," (",kgN[2],"O/",kg[Crop],")"),paste(EIA[Ha],"(",kgN[2],"O/ha",")"),"Crop Yields (t/ha)","Cropland (ha)","Nitrogen Application (kgN/ha/yr)")))+
   facet_grid(~Source)
 NL_EIA_Crop
 
-layout<-rbind(c(1),c(2))
+layout<-rbind(1,2)
 FigNLHist <- grid.arrange(NL_EIA_Liv,NL_EIA_Crop,layout_matrix=layout)
 rm(layout)
 # #
 # ---- OUTPUT: FOR DRAFT ----
-# png("output/For Draft/NL_EIA_Hist.png", width=7*ppi, height=5*ppi, res=ppi)
-# print(plot(FigNLHist))
-# dev.off()
-# # 
 # png("output/For Draft/Figure1.png", width=5*ppi, height=8*ppi, res=ppi)
 # print(plot(FigWorld))
 # dev.off()
@@ -1591,70 +1590,39 @@ rm(layout)
 # print(plot(FigEIANL))
 # dev.off()
 # 
-# png("output/For Draft/Figure3.png", width=6*ppi, height=4*ppi, res=ppi)
-# print(plot(FigNL_EntFer))
+# png("output/For Draft/Figure3.png", width=7*ppi, height=5*ppi, res=ppi)
+# print(plot(FigNLHist))
 # dev.off()
 # #
-# png("output/For Draft/Figure4.png", width=6*ppi, height=4*ppi, res=ppi)
-# print(plot(FigNL_Man))
-# dev.off()
-# 
-# png("output/For Draft/FigureS1.png", width=7*ppi, height=4*ppi, res=ppi)
-# print(plot(FigEmisTot))
-# dev.off()
-# 
-# png("output/For Draft/FigureS2.png", width=5*ppi, height=4*ppi, res=ppi)
-# print(plot(Ctax))
-# dev.off()
-# 
-# png("output/For Draft/FigureS3.png", width=5*ppi, height=2*ppi, res=ppi)
-# print(plot(FigAgProd))
-# dev.off()
-# 
-# png("output/For Draft/EIAAllR_SSP1-26.png", width=9*ppi, height=7*ppi, res=ppi)
-# print(plot(plot_list[[1]]))
-# dev.off()
-# 
-# png("output/For Draft/EIAAllR_SSP2-26.png", width=9*ppi, height=7*ppi, res=ppi)
-# print(plot(plot_list[[2]]))
-# dev.off()
-# 
-# png("output/For Draft/EIAAllR_SSP1-19.png", width=9*ppi, height=7*ppi, res=ppi)
-# print(plot(plot_list[[3]]))
-# dev.off()
-# 
-# png("output/For Draft/EIAAllR_SSP2-19.png", width=9*ppi, height=7*ppi, res=ppi)
-# print(plot(plot_list[[4]]))
-# dev.off()
-# 
-# png("output/For Draft/FigureS6.png", width=5*ppi, height=2*ppi, res=ppi)
-# print(plot(Ctax))
-# dev.off()
-#
-# png("output/For Draft/FigEIA_WEUNL.png", width=8*ppi, height=6*ppi, res=ppi)
-# print(plot(FigEIA_WEUNL))
-# dev.off()
-#
-# png("output/For Draft/EmisSpecWo.png", width=7*ppi, height=2*ppi, res=ppi)
+# png("output/For Draft/FigureS1.png", width=7*ppi, height=2*ppi, res=ppi)
 # print(plot(FigEmisWo))
 # dev.off()
 #
-# png("output/For Draft/AgProdSpecWo.png", width=8*ppi, height=4*ppi, res=ppi)
-# print(plot(FigProdWo))
-# dev.off()
-#
-# png("output/For Draft/SocEU-15C.png", width=10*ppi, height=6*ppi, res=ppi)
-# print(plot(FigSSP_15))
-# dev.off()
-# #
-# png("output/For Draft/SocEU-2C.png", width=10*ppi, height=6*ppi, res=ppi)
-# print(plot(FigSSP_2))
-# dev.off()
-#
-# png("output/For Draft/AgProdFrac.png", width=7*ppi, height=2*ppi, res=ppi)
+# png("output/For Draft/FigureS2.png", width=7*ppi, height=2*ppi, res=ppi)
 # print(plot(FigAgProdFrac))
 # dev.off()
 # 
+# png("output/For Draft/FigureS3.png", width=9*ppi, height=14*ppi, res=ppi)
+# print(plot(FigS3))
+# dev.off()
+# 
+# png("output/For Draft/FigureS4.png", width=9*ppi, height=14*ppi, res=ppi)
+# print(plot(FigS4))
+# dev.off()
+# 
+# png("output/For Draft/FigureS5.png", width=7*ppi, height=4*ppi, res=ppi)
+# print(plot(FigEmisTot))
+# dev.off()
+# 
+# png("output/For Draft/FigureS6.png", width=10*ppi, height=12*ppi, res=ppi)
+# print(plot(FigS6))
+# dev.off()
+# #
+#
+# png("output/For Draft/FigureS7.png", width=5*ppi, height=4*ppi, res=ppi)
+# print(plot(Ctax))
+# dev.off()
+
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
 # print(plot(FigEIA))
@@ -1702,13 +1670,13 @@ rm(layout)
 #   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 # FigProdWorldSSP1_26
 # 
-# FigEmisWorldSSP1_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+# FigEmisWorldSSP1_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
 #   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
 #   theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 # FigEmisWorldSSP1_26
 # 
 # # ---- ***SSP2-450 ----
@@ -1731,13 +1699,13 @@ rm(layout)
 #   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 # FigProdWorldSSP2_26
 # 
-# FigEmisWorldSSP2_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+# FigEmisWorldSSP2_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
 #   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
 #   theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 # FigEmisWorldSSP2_26
 # 
 # #
@@ -1761,13 +1729,13 @@ rm(layout)
 #   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 # FigProdWorldSSP1_19
 # 
-# FigEmisWorldSSP1_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+# FigEmisWorldSSP1_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
 #   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
 #   theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
+#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
 # FigEmisWorldSSP1_19
 # 
 # # ---- ***SSP2-20 ----
@@ -1791,13 +1759,13 @@ rm(layout)
 #   scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock")) 
 # FigProdWorldSSP2_19
 # 
-# FigEmisWorldSSP2_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalEmissions")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+# FigEmisWorldSSP2_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
 #   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
 #   theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=FontSize, hjust=1), axis.text.y = element_text(size=FontSize)) +
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
-#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
+#   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
 # FigEmisWorldSSP2_19
 # #
 # # ---- ***Consolidated ----
@@ -2001,7 +1969,7 @@ rm(layout)
 #                     labels=c("Energy crops","Food and feed","Livestock"), guide=FALSE) 
 # FigProdNL
 # 
-# FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
+# FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
 #   geom_bar(stat="identity") +
 #   geom_hline(yintercept=0,size = 0.1, colour='black') +
 #   theme_bw() +
@@ -2013,7 +1981,7 @@ rm(layout)
 #   xlim(2000,2060) +
 #   scale_fill_manual(values=c("bisque","coral4","blue","black"),
 #                     name="",
-#                     breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalEmissions"),
+#                     breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),
 #                     labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")), guide=FALSE)
 # FigEmisNL
 # 
