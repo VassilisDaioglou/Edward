@@ -186,10 +186,10 @@ colnames(NL_Land)[3] <- "Group"
 colnames(NL_Land)[4] <- "Type"
 
 # Projections of share of Dutch GDP in WEU
-# Based on data from PwC and EUrostat (see spreadsheet "GDP projections_6 EU countries")
-NL_GDPShare = data.frame(c("2010","2020","2030","2040","2050"),c(0.054761,0.05186,0.054691,0.056274,0.055538))
-colnames(NL_GDPShare)[1] <- "Year"
-colnames(NL_GDPShare)[2] <- "GDPShare"
+# Based on EU legislation on effort sharing and Eurostat (see spreadsheet "GDP projections_6 EU countries" - Worksheet "Method 2")
+NL_ReducShare = data.frame(c("2010","2020","2030","2040","2050"),c(0.040059835,0.040059835,0.040059835,0.040059835,0.040059835))
+colnames(NL_ReducShare)[1] <- "Year"
+colnames(NL_ReducShare)[2] <- "ReducShare"
 
 #
 # ---- BASE DF ----
@@ -490,9 +490,9 @@ EmReduc = EmReduc %>% mutate(Reduction=value2010-value)
 EmReduc = subset(EmReduc, select=-c(IDVar, value2010))
 EmReduc = subset(EmReduc, !(Year=="1981"|Year=="1990"|Year=="2000"))
 # Determine NL reduction based on GDP share
-EmReduc$GDPShare = NL_GDPShare[match(EmReduc$Year,NL_GDPShare$Year),2] 
-EmReduc$GDPShare[is.na(EmReduc$GDPShare)] <- 0.055538                 #Set post 2050 values to 2050 level  
-EmReduc = EmReduc %>% mutate (NL = Reduction * GDPShare)
+EmReduc$ReducShare = NL_ReducShare[match(EmReduc$Year,NL_ReducShare$Year),2] 
+EmReduc$ReducShare[is.na(EmReduc$ReducShare)] <- 0.040059835                 #Set post 2050 values to 2050 level  
+EmReduc = EmReduc %>% mutate (NL = Reduction * ReducShare)
 # Thus get emission projections for NL
 NLcEmis=matrix(ncol=12, nrow = length(unique(EmReduc$Scenario)) * length(unique(EmReduc$Variable)) * length(unique(EmReduc$Year)))
 l=0
