@@ -1239,6 +1239,44 @@ FigEIANL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_DM"|
   scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
   facet_grid( .~ScenOrder, labeller=labeller(ScenOrder = scen_labels))
 FigEIANL
+
+FigEIAdmNL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_DM")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
+                 aes(x=Year, y=value, colour=variable, linetype=Region)) +
+  geom_line(size=0.5)+
+  geom_hline(yintercept=0,size = 0.1, colour='black') +
+  xlim(2010,2050) +
+  theme_bw() +
+  theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_blank(), axis.text.y = element_text(size=FontSize2)) +
+  theme(legend.position="none", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+  ylab(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"))) +
+  xlab("") +
+  scale_colour_manual(values="firebrick") +
+  scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
+  facet_grid( .~ScenOrder, labeller=labeller(ScenOrder = scen_labels))
+FigEIAdmNL
+
+FigEIAhaNL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
+                   aes(x=Year, y=value, colour=variable, linetype=Region)) +
+  geom_line(size=0.5)+
+  geom_hline(yintercept=0,size = 0.1, colour='black') +
+  xlim(2010,2050) +
+  theme_bw() +
+  theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+  ylab(expression(paste(EIA[Ha]," (",tCO[2],-eq/Ha,")"))) +
+  xlab("") +
+  scale_colour_manual(values="forestgreen", guide=FALSE) +
+  scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
+  facet_grid( .~ScenOrder) +
+  theme(strip.background = element_blank(),strip.text.x = element_blank())
+FigEIAhaNL
+
+lay <- rbind(1,1,1,1,2,2,2,2,2,2,2)
+FigNL2 <-grid.arrange(FigEIAdmNL,FigEIAhaNL,layout_matrix=lay)
+rm(lay)
+
 #
 # ---- FIG: EIA NL (+detail, SSP1_450)----
 FigEIANL2<-ggplot(data=subset(EIA, Year>1999&Region=="NL"&Scenario=="SSP1_450"&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
@@ -1584,8 +1622,8 @@ rm(layout)
 # print(plot(FigWorld))
 # dev.off()
 # 
-# png("output/For Draft/Figure2.png", width=6*ppi, height=3.5*ppi, res=ppi)
-# print(plot(FigEIANL))
+# png("output/For Draft/Figure2.png", width=6*ppi, height=5*ppi, res=ppi)
+# print(plot(FigNL2))
 # dev.off()
 # 
 # png("output/For Draft/Figure3.png", width=7*ppi, height=5*ppi, res=ppi)
