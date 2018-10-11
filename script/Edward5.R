@@ -1225,20 +1225,18 @@ FigEIANL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_DM"|
                  aes(x=Year, y=value, colour=variable, linetype=Region)) +
   geom_line(size=0.5)+
   geom_hline(yintercept=0,size = 0.1, colour='black') +
-  #ggtitle("Global Emission Intensity of Agriculutre (SSP1-2.6)") + theme(plot.title = element_text(lineheight=20, face="bold")) +
   xlim(2010,2050) +
-  #coord_cartesian(ylim=c(0, 15)) +
   theme_bw() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical") +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  ylab("") +
+  ylab("EIA") +
   xlab("") +
   scale_colour_manual(values=c("firebrick", "forestgreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
-                      labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
-  scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
+                      labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha]," (",tCO[2],-eq/Ha,")")))) +
+  scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
   facet_grid( .~ScenOrder, labeller=labeller(ScenOrder = scen_labels))
 FigEIANL
 #
