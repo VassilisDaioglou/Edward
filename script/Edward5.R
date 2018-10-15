@@ -1131,8 +1131,8 @@ for(i in c("SSP1_450","SSP2_450")){
   plot_listB[[i]] = Fig
 }
 
-FigS3 <-grid.arrange(plot_listA[["SSP1_20"]],plot_listB[["SSP1_450"]],ncol=1)
-FigS4 <-grid.arrange(plot_listA[["SSP2_20"]],plot_listB[["SSP2_450"]],ncol=1)
+FigS4 <-grid.arrange(plot_listA[["SSP1_20"]],plot_listB[["SSP1_450"]],ncol=1)
+FigS5 <-grid.arrange(plot_listA[["SSP2_20"]],plot_listB[["SSP2_450"]],ncol=1)
 
 FigWorldWEU<-ggplot(data=subset(EIA, Year>1999&(Region=="WEU"|Region=="World")&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
             aes(x=Year, y=value, colour=variable)) + 
@@ -1630,34 +1630,30 @@ rm(layout)
 # print(plot(FigNLHist))
 # dev.off()
 # #
-# png("output/For Draft/FigureS1.png", width=7*ppi, height=2*ppi, res=ppi)
-# print(plot(FigEmisWo))
+# png("output/For Draft/FigureS1.png", width=7*ppi, height=4*ppi, res=ppi)
+# print(plot(FigEmisTot))
 # dev.off()
 #
-# png("output/For Draft/FigureS2.png", width=7*ppi, height=2*ppi, res=ppi)
-# print(plot(FigAgProdFrac))
+# png("output/For Draft/FigureS2.png", width=5*ppi, height=4*ppi, res=ppi)
+# print(plot(Ctax))
 # dev.off()
 # 
-# png("output/For Draft/FigureS3.png", width=9*ppi, height=14*ppi, res=ppi)
-# print(plot(FigS3))
+# png("output/For Draft/FigureS3.png", width=7*ppi, height=2*ppi, res=ppi)
+# print(plot(FigAgProdFrac))
 # dev.off()
 # 
 # png("output/For Draft/FigureS4.png", width=9*ppi, height=14*ppi, res=ppi)
 # print(plot(FigS4))
 # dev.off()
 # 
-# png("output/For Draft/FigureS5.png", width=7*ppi, height=4*ppi, res=ppi)
-# print(plot(FigEmisTot))
+# png("output/For Draft/FigureS5.png", width=9*ppi, height=14*ppi, res=ppi)
+# print(plot(FigS5))
 # dev.off()
 # 
 # png("output/For Draft/FigureS6.png", width=10*ppi, height=12*ppi, res=ppi)
 # print(plot(FigS6))
 # dev.off()
 # #
-#
-# png("output/For Draft/FigureS7.png", width=5*ppi, height=4*ppi, res=ppi)
-# print(plot(Ctax))
-# dev.off()
 
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
