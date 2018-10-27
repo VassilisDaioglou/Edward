@@ -214,7 +214,6 @@ SSP_all.R=SSP_all
 # Correct for EU=WUE+CEU
 SSP_all=spread(SSP_all,Region,value)
 SSP_all=SSP_all %>% mutate(EU=CEU+WEU)
-#SSP_all=subset(SSP_all, select=-c(CEU,WEU))
 SSP_all=melt(SSP_all, id.vars=c("Model","Scenario","Variable","Unit","Year","VarID","VarID2"))
 colnames(SSP_all)[8] <-"Region"
 
@@ -234,7 +233,30 @@ SSP_all.temp1 = subset(SSP_all, !(Variable=="YieldCereal"|Variable=="PriceCarbon
 
 SSP_all=rbind(SSP_all.temp,SSP_all.temp1)
 rm(SSP_all.temp,SSP_all.temp1)
-#SSP_all=subset(SSP_all, Region=="BRA"|Region=="WAF"|Region=="WEU"|Region=="EU"|Region=="World")
+
+# ---- REGIONAL FIX: MEX-CAM ----
+# Correct for MEXCAM=MEX+RCAM
+SSP_all=spread(SSP_all,Region,value)
+SSP_all=SSP_all %>% mutate(MEXCAM=MEX+RCAM)
+SSP_all=melt(SSP_all, id.vars=c("Model","Scenario","Variable","Unit","Year","VarID","VarID2"))
+colnames(SSP_all)[8] <-"Region"
+
+# For ratios, assume Get population weighted average
+SSP_all.temp = subset(SSP_all, Variable=="YieldCereal"|Variable=="PriceCarbon"|Variable=="FoodDem"|Variable=="FoodDemCrops"|Variable=="FoodDemLivestock"|Variable=="Population")
+SSP_all.temp$value[SSP_all.temp$Region=="MEXCAM"] <- 
+  (
+    (SSP_all.temp$value[SSP_all.temp$Region=="MEX"]*
+       (SSP_all.temp$value[SSP_all.temp$Region=="MEX"&SSP_all.temp$Variable=="Population"]/
+          (SSP_all.temp$value[SSP_all.temp$Region=="MEX"&SSP_all.temp$Variable=="Population"]+SSP_all.temp$value[SSP_all.temp$Region=="RCAM"&SSP_all.temp$Variable=="Population"]))) +
+      (SSP_all.temp$value[SSP_all.temp$Region=="RCAM"] *
+         (SSP_all.temp$value[SSP_all.temp$Region=="RCAM"&SSP_all.temp$Variable=="Population"]/
+            (SSP_all.temp$value[SSP_all.temp$Region=="MEX"&SSP_all.temp$Variable=="Population"]+SSP_all.temp$value[SSP_all.temp$Region=="RCAM"&SSP_all.temp$Variable=="Population"])))
+  )
+SSP_all.temp=subset(SSP_all.temp, !(Variable=="Population"))
+SSP_all.temp1 = subset(SSP_all, !(Variable=="YieldCereal"|Variable=="PriceCarbon"|Variable=="FoodDem"|Variable=="FoodDemCrops"|Variable=="FoodDemLivestock"))
+
+SSP_all=rbind(SSP_all.temp,SSP_all.temp1)
+rm(SSP_all.temp,SSP_all.temp1)
 
 # ---- REGIONAL FIX: RCP5 ----
 SSP_all.RCP=spread(SSP_all,Region,value)
@@ -659,7 +681,7 @@ EIA = EIA %>% mutate(EIA_Ha=TotalAgrEmissions/TotalLandUse)    # tCO2e/Ha (MtCO2
 EIA = melt(EIA, id.vars=c("Model","Scenario","Year","Region"))
 EIA$Year[EIA$Year=="1981"]<-"1980"
 EIA$Year = as.numeric(substr(EIA$Year, start=1, stop=4))
-EIA$RegOrder = factor(EIA$Region, levels=c("CAN","USA","MEX","RCAM","BRA","RSAM","EU","WEU","CEU","NL","NL_1","NL_2","TUR","UKR","RUS","STAN","CHN","KOR","JAP","INDIA","RSAS","INDO","SEAS","NAF","ME","WAF","EAF","RSAF","SAF","OCE","World",
+EIA$RegOrder = factor(EIA$Region, levels=c("CAN","USA","MEXCAM","MEX","RCAM","BRA","RSAM","EU","WEU","CEU","NL","NL_1","NL_2","TUR","UKR","RUS","STAN","CHN","KOR","JAP","INDIA","RSAS","INDO","SEAS","NAF","ME","WAF","EAF","RSAF","SAF","OCE","World",
                                            "OECD90","REF","ASIA","MAF","LAM"))
 EIA$RegOrder2 = EIA$RegOrder
 EIA$RegOrder2[EIA$RegOrder=="NL_1"|EIA$RegOrder=="NL_2"] <- "NL" 
@@ -900,6 +922,7 @@ reg_labels <- c("BRA" = "Brazil",
                 "WEU" = "W. Europe",
                 "World" = "World",
                 "EU" = "EU-28",
+                "MEXCAM"= "Mexico and C. America",
                 "NL" = "The Netherlands",
                 "NL_1" = "The Netherlands(2)",
                 "NL_2" = "The Netherlands(3)",
@@ -1094,7 +1117,7 @@ rm(layout)
 # Panel As should not have a legend
 plot_listA = list()
 for(i in c("SSP1_20","SSP2_20")){
-Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="WEU"|Region=="CEU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
+Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="MEX"|Region=="RCAM"|Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="EU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
                      aes(x=Year, y=value, colour=variable)) + 
   geom_line(size=0.4)+  geom_hline(yintercept=0,size = 0.1, colour='black') +
   ggtitle("a.") + theme(plot.title = element_text(face="bold", size=7)) +
@@ -1113,7 +1136,7 @@ plot_listA[[i]] = Fig
 
 plot_listB = list()
 for(i in c("SSP1_450","SSP2_450")){
-  Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="WEU"|Region=="CEU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
+  Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="MEX"|Region=="RCAM"|Region=="NL"|Region=="NL_1"|Region=="NL_2"|Region=="EU"|Region=="World"|Region=="OECD90"|Region=="REF"|Region=="ASIA"|Region=="MAF"|Region=="LAM")&Scenario==i&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
               aes(x=Year, y=value, colour=variable)) + 
     geom_line(size=0.4)+  geom_hline(yintercept=0,size = 0.1, colour='black') +
     ggtitle("b.") + theme(plot.title = element_text(face="bold", size=7)) +
