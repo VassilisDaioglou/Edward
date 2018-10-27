@@ -806,6 +806,7 @@ for(i in 8:19) {colnames(EIADat)[i] <- paste("x",colnames(EIADat[i]),sep="")}
 EIADat = EIADat %>% mutate(x50_10_Change=((x2050-x2010)/x2010)*100)
 EIADat = EIADat %>% mutate(x50_10_diff=x2050-x2010)
 EIADat = EIADat %>% mutate(x100_10_diff=x2100-x2010)
+EIADat = EIADat %>% mutate(AnnChange=((x2050/x2010)^(1/(2050-2010)))-1)
 
 EIADat2 = subset(EIADat, select=-c(Model,RegOrder))
 # EIA decomposition
