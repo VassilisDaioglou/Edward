@@ -14,7 +14,7 @@ library(tidyr)
 library(stringr)
 library(xlsx)
 library(ggpubr)
-library(grid)
+#library(grid)
 library(gridExtra)
 library(gdata)
 
@@ -22,8 +22,8 @@ library(gdata)
 # ---- INPUTS: IMAGE ----
 ppi <- 300
 # set directory path 
-setwd("~/disks/y/ontwapps/Timer/Users/Vassilis/Projects - documents/SDG/Edward/R-Scripts/")
-#setwd("C:/Users/vassi/Documents/Work/Edward/R-Scripts")
+#setwd("~/disks/y/ontwapps/Timer/Users/Vassilis/Projects - documents/SDG/Edward/R-Scripts/")
+setwd("C:/Users/Asus/Documents/Github/Edward/")
 # Read Data File
 SSP1.26=read.csv("data/SSP1_450.csv", sep=",", dec=".", stringsAsFactors = FALSE, colClasses = "character")
 SSP1.26[] <- lapply(SSP1.26, as.character)
