@@ -316,13 +316,23 @@ names(SSP_all.NLa)[names(SSP_all.NLa) == "EmisCH4LandUse_NL"] = "EmisCH4LandUse"
 names(SSP_all.NLa)[names(SSP_all.NLa) == "EmisN2OLandUse_NL"] = "EmisN2OLandUse"
 names(SSP_all.NLa)[names(SSP_all.NLa) == "EmisCO2LandUse_NL"] = "EmisCO2LandUse"
 # Scale 2020 emission to what is reported in IPCC for the Netherlands
-NLScale.CH41 = subset(SSP_all.NLa, Year=="2020"&VarID=="EmisCH4L"&Scenario=="SSP1_450")
-NLScale.N2O1 = subset(SSP_all.NLa, Year=="2020"&VarID=="EmisN2OL"&Scenario=="SSP1_450"&Unit=="Mt CO2eq/yr")
-NLScale.CH4 = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]/NLScale.CH41[,16]
-NLScale.N2O = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]/NLScale.N2O1[,17]
-SSP_all.NLa$EmisCH4LandUse = SSP_all.NLa$EmisCH4LandUse * NLScale.CH4
-SSP_all.NLa$EmisN2OLandUse = SSP_all.NLa$EmisN2OLandUse * NLScale.N2O
-rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O)
+# Do this iteratively over all scenarios as they may have different starting points
+for(i in unique(SSP_all.NLa$Scenario)){
+  NLScale.CH41 = subset(SSP_all.NLa, Year=="2020"&VarID=="EmisCH4L"&Scenario==i)
+  NLScale.N2O1 = subset(SSP_all.NLa, Year=="2020"&VarID=="EmisN2OL"&Scenario==i&Unit=="Mt CO2eq/yr")
+  NLScale.CH4 = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]/NLScale.CH41[,16]
+  NLScale.N2O = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]/NLScale.N2O1[,17]
+  SSP_all.NLa$EmisCH4LandUse2[SSP_all.NLa$Scenario==i] = SSP_all.NLa$EmisCH4LandUse[SSP_all.NLa$Scenario==i] * NLScale.CH4
+  SSP_all.NLa$EmisN2OLandUse2[SSP_all.NLa$Scenario==i] = SSP_all.NLa$EmisN2OLandUse[SSP_all.NLa$Scenario==i] * NLScale.N2O
+  rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O)
+}
+
+SSP_all.NLa$EmisCH4LandUse <- NULL
+SSP_all.NLa$EmisN2OLandUse <- NULL
+colnames(SSP_all.NLa)[colnames(SSP_all.NLa) == 'EmisCH4LandUse2'] <- 'EmisCH4LandUse'
+colnames(SSP_all.NLa)[colnames(SSP_all.NLa) == 'EmisN2OLandUse2'] <- 'EmisN2OLandUse'
+
+#rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O)
 # Correct agricultural production based on share of NL production in WEU for 2015 (FAO Data)
 SSP_all.NLa = SSP_all.NLa %>% mutate(AgriProdCropsEnergy_NL = AgriProdCropsEnergy * NL_Prod$value[NL_Prod$Group=="Crops"&NL_Prod$Type=="Share"&NL_Prod$Year=="2013"])
 SSP_all.NLa = SSP_all.NLa %>% mutate(AgriProdCropsNonEnergy_NL = AgriProdCropsNonEnergy * NL_Prod$value[NL_Prod$Group=="Crops"&NL_Prod$Type=="Share"&NL_Prod$Year=="2013"])
@@ -331,6 +341,7 @@ SSP_all.NLa = subset(SSP_all.NLa, select=-c(AgriProdCropsEnergy,AgriProdCropsNon
 names(SSP_all.NLa)[names(SSP_all.NLa) == "AgriProdCropsEnergy_NL"] = "AgriProdCropsEnergy"
 names(SSP_all.NLa)[names(SSP_all.NLa) == "AgriProdCropsNonEnergy_NL"] = "AgriProdCropsNonEnergy"
 names(SSP_all.NLa)[names(SSP_all.NLa) == "AgriProdLivestock_NL"] = "AgriProdLivestock"
+
 # Correct land use
 SSP_all.NLa = SSP_all.NLa %>% mutate(LandCropland_NL = LandCropland * NL_Land$value[NL_Land$Group=="Cropland"&NL_Land$Type=="Share"&NL_Land$Year=="2013"])
 SSP_all.NLa = SSP_all.NLa %>% mutate(LandOtherArableLand_NL = LandOtherArableLand * NL_Land$value[NL_Land$Group=="Cropland"&NL_Land$Type=="Share"&NL_Land$Year=="2013"])
@@ -351,7 +362,6 @@ SSP_all.NLa$CorVar=paste(SSP_all.NLa$Scenario,SSP_all.NLa$Variable, SSP_all.NLa$
 SSP_all.NLa$CorVar2=paste(SSP_all.NLa$Scenario,SSP_all.NLa$Variable, SSP_all.NLa$Unit,SSP_all.NLa$Year)
 SSP_all.NLa2010=subset(SSP_all.NLa,Year=="2010")
 SSP_all.NLa$value2010 <- SSP_all.NLa2010[match(SSP_all.NLa$CorVar,SSP_all.NLa2010$CorVar),7]
-
 #
 # ----*** Downscaling (ii) ----
 #
@@ -381,12 +391,20 @@ names(SSP_all.NLb)[names(SSP_all.NLb) == "EmisCH4LandUse_NL"] = "EmisCH4LandUse"
 names(SSP_all.NLb)[names(SSP_all.NLb) == "EmisN2OLandUse_NL"] = "EmisN2OLandUse"
 names(SSP_all.NLb)[names(SSP_all.NLb) == "EmisCO2LandUse_NL"] = "EmisCO2LandUse"
 # Scale 2020 emission to what is reported in IPCC for the Netherlands
-NLScale.CH41 = subset(SSP_all.NLb, Year=="2020"&VarID=="EmisCH4L"&Scenario=="SSP1_450")
-NLScale.N2O1 = subset(SSP_all.NLb, Year=="2020"&VarID=="EmisN2OL"&Scenario=="SSP1_450"&Unit=="Mt CO2eq/yr")
-NLScale.CH4 = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]/NLScale.CH41[,16]
-NLScale.N2O = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]/NLScale.N2O1[,17]
-SSP_all.NLb$EmisCH4LandUse = SSP_all.NLb$EmisCH4LandUse * NLScale.CH4
-SSP_all.NLb$EmisN2OLandUse = SSP_all.NLb$EmisN2OLandUse * NLScale.N2O
+for(i in unique(SSP_all.NLb$Scenario)){
+  NLScale.CH41 = subset(SSP_all.NLb, Year=="2020"&VarID=="EmisCH4L"&Scenario==i)
+  NLScale.N2O1 = subset(SSP_all.NLb, Year=="2020"&VarID=="EmisN2OL"&Scenario==i&Unit=="Mt CO2eq/yr")
+  NLScale.CH4 = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]/NLScale.CH41[,16]
+  NLScale.N2O = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]/NLScale.N2O1[,17]
+  SSP_all.NLb$EmisCH4LandUse2[SSP_all.NLb$Scenario==i] = SSP_all.NLb$EmisCH4LandUse[SSP_all.NLb$Scenario==i] * NLScale.CH4
+  SSP_all.NLb$EmisN2OLandUse2[SSP_all.NLb$Scenario==i] = SSP_all.NLb$EmisN2OLandUse[SSP_all.NLb$Scenario==i] * NLScale.N2O
+  rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O)
+}
+
+SSP_all.NLb$EmisCH4LandUse <- NULL
+SSP_all.NLb$EmisN2OLandUse <- NULL
+colnames(SSP_all.NLb)[colnames(SSP_all.NLb) == 'EmisCH4LandUse2'] <- 'EmisCH4LandUse'
+colnames(SSP_all.NLb)[colnames(SSP_all.NLb) == 'EmisN2OLandUse2'] <- 'EmisN2OLandUse'
 rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O,Coef,fit)
 # Correct agricultural production based on share of NL production in WEU for 2015 (FAO Data)
       plot(NL_Prod$Year[NL_Prod$Type=="Share"&NL_Prod$Group=="Crops"],NL_Prod$value[NL_Prod$Type=="Share"&NL_Prod$Group=="Crops"])
@@ -873,10 +891,10 @@ EmisTot = subset(EmisTot, Variable=="EmisCH4LandUse"|
                    Variable=="EmisN2OEnergySupplyandDem")
 # 
 # # # ---- NUMERIC OUTPUTS ----
-# write.xlsx(EmisDat, file="output/Results_v10.xlsx", sheetName="Emissions", row.names=FALSE, showNA = TRUE)
-# write.xlsx(EIADat2, file="output/Results_v10.xlsx", sheetName="EIA", append=TRUE, row.names=FALSE, showNA = TRUE)
-# write.xlsx(Socio2, file="output/Results_v10.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
-# write.xlsx(AgrProdDat, file="output/Results_v10.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(EmisDat, file="output/Results_v11.xlsx", sheetName="Emissions", row.names=FALSE, showNA = TRUE)
+# write.xlsx(EIADat2, file="output/Results_v11.xlsx", sheetName="EIA", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(Socio2, file="output/Results_v11.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
+# write.xlsx(AgrProdDat, file="output/Results_v11.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
 #
 # ---- LABELS ----
 var_labels <- c("Population"="Population (Mil.)",
@@ -1641,7 +1659,7 @@ layout<-rbind(1,2)
 FigNLHist <- grid.arrange(NL_EIA_Liv,NL_EIA_Crop,layout_matrix=layout)
 rm(layout)
 # #
-# ---- OUTPUT: FOR DRAFT ----
+# # ---- OUTPUT: FOR DRAFT ----
 # png("output/For Draft/Figure1.png", width=5*ppi, height=8*ppi, res=ppi)
 # print(plot(FigWorld))
 # dev.off()
@@ -1657,7 +1675,7 @@ rm(layout)
 # png("output/For Draft/FigureS1.png", width=7*ppi, height=4*ppi, res=ppi)
 # print(plot(FigEmisTot))
 # dev.off()
-#
+# 
 # png("output/For Draft/FigureS2.png", width=5*ppi, height=4*ppi, res=ppi)
 # print(plot(Ctax))
 # dev.off()
@@ -1677,7 +1695,7 @@ rm(layout)
 # png("output/For Draft/FigureS6.png", width=10*ppi, height=12*ppi, res=ppi)
 # print(plot(FigS6))
 # dev.off()
-# #
+# # #
 
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
