@@ -666,6 +666,32 @@ SSP_all.EMtemp$value1 = SSP_all.EMtemp$value + NLCorLULUCF
 SSP_all.EMtemp$value <- NULL
 names(SSP_all.EMtemp)[names(SSP_all.EMtemp) == "value1"] = "value"
 SSP_all.EM2 = rbind(SSP_all.EMtemp,SSP_all.EMtemp1)
+# Have to Calibrate historic CH4 and N2O Emissions for NL, which have been affected by the smoothing
+  # First Isolate NL
+SSP_all.EM2_NL = subset(SSP_all.EM2, (Region=="NL"|Region=="NL_1"|Region=="NL_2"))
+SSP_all.EM2 = subset(SSP_all.EM2, !(Region=="NL"|Region=="NL_1"|Region=="NL_2"))
+  # Determine required Correction Factors (historic)
+test=subset(SSP_all.EM2_NL, (Year==1990|Year==2020)&(variable=="EmisCH4LandUse"|variable=="EmisN2OLandUse"))
+test$Historic[test$variable=="EmisCH4LandUse" & test$Year==2020] = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]
+test$Historic[test$variable=="EmisN2OLandUse" & test$Year==2020] = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]
+test$Historic[test$variable=="EmisCH4LandUse" & test$Year==1990] = 15
+test$Historic[test$variable=="EmisN2OLandUse" & test$Year==1990] = 10
+test = test %>% mutate(Correction = Historic/value)
+test$Hist <- "Yes"
+test$Hist[test$Year>=2020] <- "NO"
+test$AgrID = paste(test$Scenario,test$Region,test$variable,test$Hist)
+  # Make correction to historic and future values
+SSP_all.EM2_NL$Hist <- "Yes"
+SSP_all.EM2_NL$Hist[SSP_all.EM2_NL$Year>=2020] <- "NO"
+SSP_all.EM2_NL$AgrID <- paste(SSP_all.EM2_NL$Scenario,SSP_all.EM2_NL$Region,SSP_all.EM2_NL$variable,SSP_all.EM2_NL$Hist)
+SSP_all.EM2_NL$Correction <- test[match(SSP_all.EM2_NL$AgrID,test$AgrID),8] 
+SSP_all.EM2_NL$Correction[is.na(SSP_all.EM2_NL$Correction)]<- 1
+SSP_all.EM2_NL = SSP_all.EM2_NL %>% mutate(value_cor = value * Correction)
+SSP_all.EM2_NL = subset(SSP_all.EM2_NL, select=-c(value,Hist,AgrID,Correction))
+colnames(SSP_all.EM2_NL)[6] <- "value"
+  # Merge corrected NL values
+SSP_all.EM2 = rbind(SSP_all.EM2,SSP_all.EM2_NL)
+rm(test,SSP_all.EM2_NL)
 #Total Emissions (have to correct due to NL calibration)
 SSP_all.EM2 = spread(SSP_all.EM2,variable,value)
 SSP_all.EM2 = SSP_all.EM2 %>% mutate(TotalAgrEmissions=EmisCH4LandUse+EmisN2OLandUse)
@@ -954,6 +980,7 @@ reg_labels <- c("BRA" = "Brazil",
                 "USA" = "USA",
                 "WAF" = "W. Africa",
                 "WEU" = "W. Europe",
+                "OECD.Europe" = "W. Europe",
                 "World" = "World",
                 "EU" = "EU-28",
                 "MEXCAM"= "Mexico and C. America",
@@ -1454,7 +1481,7 @@ FigEmisWo <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmiss
   facet_grid(Region ~ Scenario, scales="free_y", labeller=labeller(Scenario=scen_labels))
 FigEmisWo
 
-FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalAgrEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
+FigEmisNL <- ggplot(data=subset(Emis, (Region=="NL"|Region=="NL_1"|Region=="NL_2")&!(variable=="TotalAgrEmissions")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +
   geom_line(data=subset(Emis, Region=="NL"&variable=="TotalAgrEmissions"), aes(x=Year, y = value)) +
   geom_hline(yintercept=0,size = 0.1, colour='black') +
@@ -1471,6 +1498,10 @@ FigEmisNL <- ggplot(data=subset(Emis, Region=="NL"&!(variable=="TotalAgrEmission
   ) +
   facet_grid(Region ~ Scenario, scales="free_y", labeller=labeller(Scenario=scen_labels))
 FigEmisNL
+
+# png("output/NL_Emis.png", width=8*ppi, height=8*ppi, res=ppi)
+# print(plot(FigEmisNL))
+# dev.off()
 
 
 #
@@ -1699,7 +1730,7 @@ FigLivestock <-ggplot(data=subset(LivestockProd, (REGION=="OECD.Europe"|REGION==
                     breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
                     labels=c("Beef","Non-Ruminant","Pork","Milk","Poultry")
   ) +
-  facet_grid(REGION ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels, LiveOrder=live_labels), scale="free_y")
+  facet_grid(REGION ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels, REGION=reg_labels), scale="free_y")
 FigLivestock
 
 ##
