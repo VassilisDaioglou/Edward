@@ -936,6 +936,18 @@ EmisTot = subset(EmisTot, Variable=="EmisCH4LandUse"|
 # write.xlsx(EIADat2, file="output/Results_v11.xlsx", sheetName="EIA", append=TRUE, row.names=FALSE, showNA = TRUE)
 # write.xlsx(Socio2, file="output/Results_v11.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
 # write.xlsx(AgrProdDat, file="output/Results_v11.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
+
+# wb <- createWorkbook("output/Results_v11.xlsx") 
+# addWorksheet(wb, sheetName = "Emissions") 
+# writeData(wb, sheet = "Emissions", x = EmisDat) 
+# addWorksheet(wb, sheetName = "EIA") 
+# writeData(wb, sheet = "EIA", x = EIADat2) 
+# addWorksheet(wb, sheetName = "Socio-Economics") 
+# writeData(wb, sheet = "Socio-Economics", x = Socio2)
+# addWorksheet(wb, sheetName = "Agricultural Production") 
+# writeData(wb, sheet = "Agricultural Production", x = AgrProdDat)
+# saveWorkbook(wb, "output/Results_v11.xlsx")
+
 #
 # ---- LABELS ----
 var_labels <- c("Population"="Population (Mil.)",
