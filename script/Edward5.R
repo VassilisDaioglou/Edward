@@ -53,6 +53,21 @@ colnames(SSP2.19)[6] <-"Year"
 SSP2.19$Year = as.numeric(substr(SSP2.19$Year, start=2, stop=5))
 SSP2.19$value = as.numeric(substr(SSP2.19$value, start=1, stop=5))
 
+LivestockProd_SSP1_20 = read.xlsx("data/Livestockprod.xlsx", sheet = 1, startRow=5)
+LivestockProd_SSP1_450 = read.xlsx("data/Livestockprod.xlsx", sheet = 2, startRow=5)
+LivestockProd_SSP2_20 = read.xlsx("data/Livestockprod.xlsx", sheet = 3, startRow=5)
+LivestockProd_SSP2_450 = read.xlsx("data/Livestockprod.xlsx", sheet = 4, startRow=5)
+LivestockProd_SSP1_20$SCENARIO <- "SSP1_20"
+LivestockProd_SSP1_450$SCENARIO <- "SSP1_450"
+LivestockProd_SSP2_20$SCENARIO <- "SSP2_20"
+LivestockProd_SSP2_450$SCENARIO <- "SSP2_450"
+LivestockProd = rbind(LivestockProd_SSP1_20,LivestockProd_SSP1_450,LivestockProd_SSP2_20,LivestockProd_SSP2_450)
+rm(LivestockProd_SSP1_20,LivestockProd_SSP1_450,LivestockProd_SSP2_20,LivestockProd_SSP2_450)
+LivestockProd=melt(LivestockProd, id.vars=c("t","NAPT","SCENARIO"), na.rm=TRUE)
+colnames(LivestockProd)[1:5] <-c("YEAR","VARIABLE","SCENARIO","REGION","value1")
+LivestockProd$value <- LivestockProd$value1 / 1000 
+LivestockProd$UNIT <- "MtDM/yr"
+LivestockProd$value1 <- NULL
 # ---- INPUTS: DATA ----
 # Population
 WEU_pop=read.csv("data/Eurostat_pop.csv", sep=",", dec=".", stringsAsFactors = FALSE, colClasses = "character")
@@ -950,6 +965,11 @@ reg_labels <- c("BRA" = "Brazil",
                 "ASIA"="Asia",
                 "MAF"="M. East & Africa",
                 "LAM"="Lat. America")
+live_labels <- c("beef" = "Ruminants",
+                "mutton & goat meat" = "Non-Ruminants",
+                "pork" = "Pork",
+                "milk" = "Dairy",
+                "poultry & eggs" = "Poultry")
                 
 FontSize=15 # For presentation
 FontSize3=12 # For presentation - axes
@@ -1659,6 +1679,30 @@ layout<-rbind(1,2)
 FigNLHist <- grid.arrange(NL_EIA_Liv,NL_EIA_Crop,layout_matrix=layout)
 rm(layout)
 # #
+# ---- FIG: Livestock Prod per Type ----
+LivestockProd$ScenOrder = factor(LivestockProd$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
+LivestockProd$LiveOrder = factor(LivestockProd$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
+
+FigLivestock <-ggplot(data=subset(LivestockProd, (REGION=="OECD.Europe"|REGION=="World")&(YEAR>=2010|YEAR<2050)&!(VARIABLE=="Total")), aes(x=YEAR, y=value, fill=LiveOrder)) + 
+  geom_area(colour="black", size=.1) +
+  geom_hline(yintercept=0,size = 0.1, colour='black') +
+  xlim(2010,2050) +
+  theme_bw() +
+  theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
+  theme(legend.title=element_blank(), legend.position="bottom") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+  theme(legend.position="right", legend.text=element_text(size=FontSize2), legend.title=element_text(face="bold")) +
+  ylab("Mt DM/yr") +
+  xlab("") +
+  scale_fill_manual(values=c("chocolate","olivedrab2","magenta","mistyrose","orangered"),
+                    name ="",
+                    breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
+                    labels=c("Beef","Non-Ruminant","Pork","Milk","Poultry")
+  ) +
+  facet_grid(REGION ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels, LiveOrder=live_labels), scale="free_y")
+FigLivestock
+
+##
 # # ---- OUTPUT: FOR DRAFT ----
 # png("output/For Draft/Figure1.png", width=5*ppi, height=8*ppi, res=ppi)
 # print(plot(FigWorld))
@@ -1696,7 +1740,10 @@ rm(layout)
 # print(plot(FigS6))
 # dev.off()
 # #
-
+# png("output/For Draft/FigureS7.png", width=9*ppi, height=5*ppi, res=ppi)
+# print(plot(FigLivestock))
+# dev.off()
+# #
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
 # print(plot(FigEIA))
