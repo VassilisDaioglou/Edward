@@ -974,7 +974,7 @@ FigSSP_15 <-ggplot(data=subset(AllIndFig, Scenario=="SSP1_20"|Scenario=="SSP2_20
   theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
   theme(legend.title=element_blank(), legend.position="none") + theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(strip.background = element_blank()) + 
-  scale_colour_manual(values=c("forestgreen", "blue"),name ="Scenario",breaks=c("SSP1_20","SSP2_20"),labels=c("SSP1-1.5C","SSP2-1.5C")) +
+  scale_colour_manual(values=c("limegreen", "blue"),name ="Scenario",breaks=c("SSP1_20","SSP2_20"),labels=c("SSP1-1.5C","SSP2-1.5C")) +
   facet_wrap(~VarOrder,strip.position = "top", scales="free_y", labeller=labeller(VarOrder = var_labels))
 FigSSP_15
 
@@ -985,7 +985,7 @@ FigSSP_2  <-ggplot(data=subset(AllIndFig, Scenario=="SSP1_450"|Scenario=="SSP2_4
   theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
   theme(legend.title=element_blank(), legend.position="bottom") + theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(strip.background = element_blank()) + 
-  scale_colour_manual(values=c("forestgreen", "blue"),name ="Scenario",breaks=c("SSP1_450","SSP2_450"),labels=c("SSP1","SSP2")) +
+  scale_colour_manual(values=c("limegreen", "blue"),name ="Scenario",breaks=c("SSP1_450","SSP2_450"),labels=c("SSP1","SSP2")) +
   facet_wrap(~VarOrder,strip.position = "top", scales="free_y", labeller=labeller(VarOrder = var_labels))
 FigSSP_2
 
@@ -1002,7 +1002,7 @@ FigEIAWorldSSP1_26<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario==
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=7)) +
   ylab("") + xlab("") + 
-  scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
 FigEIAWorldSSP1_26
 
 FigProdWorldSSP1_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1031,7 +1031,7 @@ FigEIAWorldSSP2_26<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario==
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") + xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])),guide=FALSE)
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])),guide=FALSE)
 FigEIAWorldSSP2_26
 
 FigProdWorldSSP2_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1061,7 +1061,7 @@ FigEIAWorldSSP1_19<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario==
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=7)) +
   ylab("") + xlab("") + 
-  scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
 FigEIAWorldSSP1_19
 
 FigProdWorldSSP1_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1090,7 +1090,7 @@ FigEIAWorldSSP2_19<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario==
   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") + xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])))
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])))
 FigEIAWorldSSP2_19
 
 FigProdWorldSSP2_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1146,7 +1146,7 @@ Fig<-ggplot(data=subset(EIA, Year>1999&!(Region=="MEX"|Region=="RCAM"|Region=="N
   theme(legend.position="none", legend.text = element_text(size=10, face="plain")) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") + xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                      name ="",
                      breaks=c("EIA_DM","EIA_Ha")) +
   facet_wrap(~RegOrder, ncol = 5, labeller=labeller(Scenario = scen_labels, RegOrder = reg_labels))
@@ -1165,7 +1165,7 @@ for(i in c("SSP1_450","SSP2_450")){
     theme(legend.position="bottom", legend.text = element_text(size=10, face="plain")) +
     theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
     ylab("") +  xlab("") +
-    scale_colour_manual(values=c("firebrick", "forestgreen"),
+    scale_colour_manual(values=c("darkorchid3", "limegreen"),
                         name ="",
                         breaks=c("EIA_DM","EIA_Ha"), 
                         labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha]," (",tCO[2],-eq/Ha,")")))) +
@@ -1187,7 +1187,7 @@ FigWorldWEU<-ggplot(data=subset(EIA, Year>1999&(Region=="WEU"|Region=="World")&(
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
@@ -1210,7 +1210,7 @@ FigEIAWEUWo<-ggplot(data=subset(EIA, Year>1999&(Region=="World"|Region=="WEU")&(
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       #labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha)))) +
@@ -1232,7 +1232,7 @@ FigEIAEU<-ggplot(data=subset(EIA, Year>1999&(Region=="EU"|Region=="WEU"|Region==
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       #labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(CO[2],-eq/Ha)))) +
@@ -1252,7 +1252,7 @@ FigEIA_WEUNL <-ggplot(data=subset(EIA.1, !Region=="World"), aes(x=Year, y=value,
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       #labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha)))) +
@@ -1274,7 +1274,7 @@ FigEIANL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_DM"|
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("EIA") +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha]," (",tCO[2],-eq/Ha,")")))) +
@@ -1293,7 +1293,7 @@ FigEIAdmNL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_DM
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"))) +
   xlab("") +
-  scale_colour_manual(values="firebrick") +
+  scale_colour_manual(values="darkorchid3") +
   scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
   facet_grid( .~ScenOrder, labeller=labeller(ScenOrder = scen_labels))
 FigEIAdmNL
@@ -1309,7 +1309,7 @@ FigEIAhaNL<-ggplot(data=subset(EIA, Year>1999&RegOrder2=="NL"&(variable=="EIA_Ha
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(EIA[Ha]," (",tCO[2],-eq/Ha,")"))) +
   xlab("") +
-  scale_colour_manual(values="forestgreen", guide=FALSE) +
+  scale_colour_manual(values="limegreen", guide=FALSE) +
   scale_linetype_manual(values=c("solid","twodash","dashed"), name="Downscaling Method:",breaks=c("NL","NL_1","NL_2"),labels=c("1","2","3")) +
   facet_grid( .~ScenOrder) +
   theme(strip.background = element_blank(),strip.text.x = element_blank())
@@ -1334,7 +1334,7 @@ FigEIANL2<-ggplot(data=subset(EIA, Year>1999&Region=="NL"&Scenario=="SSP1_450"&(
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") +
   xlab("") +
-  scale_colour_manual(values=c("firebrick", "forestgreen"),
+  scale_colour_manual(values=c("darkorchid3", "limegreen"),
                       name ="",
                       breaks=c("EIA_DM","EIA_Ha"),
                       labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
@@ -1389,7 +1389,7 @@ FigEIA <-ggplot(data=EIA.1, aes(x=Year, y=value, colour=Region, fill=Region, lin
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   xlab("") +
-  scale_colour_manual(values=c("black", "blue","orange","forestgreen","firebrick"),
+  scale_colour_manual(values=c("black", "blue","orange","limegreen","darkorchid3"),
                       name ="Regions",
                       breaks=c("World","WEU","NL","NL_1","NL_2"),
                       labels=c("World","WEU","NL","NL_1","NL_2")
@@ -1541,7 +1541,7 @@ FigEmisTot<-ggplot(data=subset(EmisTot, Year>1999&Region=="World"),aes(x=Year, y
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +
   xlab("") +
-  scale_colour_manual(values=c("deepskyblue","black","forestgreen","magenta","brown"),
+  scale_colour_manual(values=c("deepskyblue","black","limegreen","magenta","brown"),
                       name ="Emission Source",
                       breaks=c("EmisCH4LandUse","EmisCO2FossilFuelsandIndustry","EmisCO2LandUse","EmisN2OEnergySupplyandDem","EmisN2OLandUse"),
                       labels=c(expression(paste(CH[4]," Land Use"),
@@ -1564,7 +1564,7 @@ FigTrad <-ggplot(data=subset(TradBal, !(Region2=="World")), aes(x=Year, y=NetCro
   ylab("Mt DM/yr") +
   xlab("") +
   theme(legend.position="right", legend.text=element_text(size=6), legend.title=element_text(face="bold")) +
-  scale_colour_manual(values=c("darkgoldenrod1","gray50","firebrick","forestgreen","dodgerblue","darkorchid1","chocolate","black"),
+  scale_colour_manual(values=c("darkgoldenrod1","gray50","darkorchid3","limegreen","dodgerblue","darkorchid1","chocolate","black"),
                       name ="",
                       breaks=c("ME","OCE","NAM","LAM","EU","AFR","FSU","ASIA"),
                       labels=c("ME","OCE","NAM","LAM","EU","AFR","FSU","ASIA")
@@ -1583,7 +1583,7 @@ FigAgProd <-ggplot(data=subset(AgriProd, !(Region2=="World")&variable=="TotalPro
   theme(legend.position="right", legend.text=element_text(size=6), legend.title=element_text(face="bold")) +
   ylab("Mt DM/yr") +
   xlab("") +
-  scale_fill_manual(values=c("black","dodgerblue","forestgreen","darkgoldenrod1","gray50","firebrick","darkorchid1","chocolate"),
+  scale_fill_manual(values=c("black","dodgerblue","limegreen","darkgoldenrod1","gray50","darkorchid3","darkorchid1","chocolate"),
                       name ="",
                     breaks=c("ASIA","EU","LAM","ME","OCE","NAM","AFR","FSU"),
                     labels=c("ASIA","EU","LAM","ME","OCE","NAM","AFR","FSU")
@@ -1602,7 +1602,7 @@ FigAgProdFrac <-ggplot(data=subset(AgriProd, !(Region2=="World")&variable=="Agri
   theme(legend.position="right", legend.text=element_text(size=6), legend.title=element_text(face="bold")) +
   ylab("Mt DM/yr") +
   xlab("") +
-  scale_fill_manual(values=c("black","dodgerblue","forestgreen","darkgoldenrod1","gray50","firebrick","darkorchid1","chocolate"),
+  scale_fill_manual(values=c("black","dodgerblue","limegreen","darkgoldenrod1","gray50","orangered","darkorchid1","chocolate"),
                     name ="",
                     breaks=c("ASIA","EU","LAM","ME","OCE","NAM","AFR","FSU"),
                     labels=c("ASIA","EU","LAM","ME","OCE","NAM","AFR","FSU")
@@ -1623,7 +1623,7 @@ NL_EIA_Liv<-ggplot() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
   theme(legend.position="right", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  scale_colour_manual(values=c("tan","slategray3","black","firebrick","forestgreen"),
+  scale_colour_manual(values=c("tan","slategray3","black","darkorchid3","limegreen"),
                       name ="",breaks=c("Milk_EI_perDM","Milk_EI_perHa","Milk_per_animal","LU_per_animal","CH4_per_animal"),
                       labels=c(expression(paste(EIA[DM]," (",kgCH[4],"/",kg[Milk],")"),paste(EIA[Ha]," (",kgCH[4],"/ha",")"),paste("Productivity (",kg[Milk],"/Animal/yr)"),"Stocking Rate (Animal/ha)",paste("Emission Factor (",kgCH[4],"/Animal)"))))+
   scale_linetype_manual(values = c(2,2,2,1,1),
@@ -1643,7 +1643,7 @@ NL_EIA_Crop<-ggplot() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
   theme(legend.position="right", legend.text = element_text(size=FontSize2, face="plain"),legend.direction="vertical",legend.text.align = 0) +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
-  scale_colour_manual(values=c("firebrick","forestgreen","tan","slategray3","black"),
+  scale_colour_manual(values=c("darkorchid3","limegreen","tan","slategray3","black"),
                       name ="",breaks=c("Crop_EIAdm","Crop_EIAha","Crop_Yield","Cropland","N_AppRate"),
                       labels=c(expression(paste(EIA[DM]," (",kgN[2],"O/",kg[Crop],")"),paste(EIA[Ha],"(",kgN[2],"O/ha",")"),"Crop Yields (t/ha)","Cropland (ha)","Nitrogen Application (kgN/ha/yr)")))+
   scale_linetype_manual(values = c(1,1,2,2,2),
@@ -1695,7 +1695,7 @@ rm(layout)
 # png("output/For Draft/FigureS6.png", width=10*ppi, height=12*ppi, res=ppi)
 # print(plot(FigS6))
 # dev.off()
-# # #
+# #
 
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
@@ -1732,7 +1732,7 @@ rm(layout)
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=FontSize)) +
 #   ylab("") + xlab("") + 
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
 # FigEIAWorldSSP1_26
 # 
 # FigProdWorldSSP1_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1761,7 +1761,7 @@ rm(layout)
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") + xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])),guide=FALSE)
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])),guide=FALSE)
 # FigEIAWorldSSP2_26
 # 
 # FigProdWorldSSP2_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1791,7 +1791,7 @@ rm(layout)
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=7)) +
 #   ylab("") + xlab("") + 
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
 # FigEIAWorldSSP1_19
 # 
 # FigProdWorldSSP1_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
@@ -1820,7 +1820,7 @@ rm(layout)
 #   theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical", legend.text.align=0) +
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") + xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(EIA[DM]," (",MtCO[2],"-eq/",t[DM],")")),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(EIA[DM]," (",MtCO[2],"-eq/",t[DM],")")),
 #                                                                                                          expression(paste(EIA[Ha]," (",tCO[2],"-eq/Ha)"))))
 # FigEIAWorldSSP2_19
 # 
@@ -1875,7 +1875,7 @@ rm(layout)
 #     theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #     ylab("") +
 #     xlab("") +
-#     scale_colour_manual(values=c("firebrick", "forestgreen"),
+#     scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                         name ="",
 #                         breaks=c("EIA_DM","EIA_Ha"),
 #                         #                     labels=c(expression("per t"["DM"],"per Ha"))) +
@@ -1901,7 +1901,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),
@@ -1923,7 +1923,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),
@@ -1948,7 +1948,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha],"( ",tCO[2],-eq/Ha,")")))) +
@@ -1970,7 +1970,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       labels=c(expression(paste(EIA[DM]," (",MtCO[2],-eq/t[DM],")"),paste(EIA[Ha],"( ",tCO[2],-eq/Ha,")")))) +
@@ -1995,7 +1995,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       #labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(CO[2],-eq/Ha)))) +
@@ -2018,7 +2018,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       # labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
@@ -2074,7 +2074,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(GtCO[2],"-eq/yr",""))) +
 #   xlab("") +
-#   scale_colour_manual(values=c("deepskyblue","black","forestgreen","magenta","brown"),
+#   scale_colour_manual(values=c("deepskyblue","black","limegreen","magenta","brown"),
 #                       name ="Emission Source",
 #                       breaks=c("EmisCH4LandUse","EmisCO2FossilFuelsandIndustry","EmisCO2LandUse","EmisN2OEnergySupplyandDem","EmisN2OLandUse"),
 #                       labels=c(expression(paste(CH[4]," Land Use"),
@@ -2096,7 +2096,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab(expression(paste(GtCO[2],"-eq/yr",""))) +
 #   xlab("") +
-#   scale_colour_manual(values=c("deepskyblue","black","forestgreen","magenta","brown"),
+#   scale_colour_manual(values=c("deepskyblue","black","limegreen","magenta","brown"),
 #                       name ="Emission Source",
 #                       breaks=c("EmisCH4LandUse","EmisCO2FossilFuelsandIndustry","EmisCO2LandUse","EmisN2OEnergySupplyandDem","EmisN2OLandUse"),
 #                       labels=c(expression(paste(CH[4]," Land Use"),
@@ -2121,7 +2121,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   theme(strip.background = element_blank()) +
 #   ylab("")+xlab("") +
-#   scale_colour_manual(values=c("forestgreen", "blue"),
+#   scale_colour_manual(values=c("limegreen", "blue"),
 #                       name ="Scenario",
 #                       breaks=c("SSP1_20","SSP2_20"),
 #                       labels=c("SSP1","SSP2")
@@ -2237,7 +2237,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("") +
 #   xlab("") +
-#   scale_colour_manual(values=c("firebrick", "forestgreen"),
+#   scale_colour_manual(values=c("darkorchid3", "limegreen"),
 #                       name ="",
 #                       breaks=c("EIA_DM","EIA_Ha"),
 #                       labels=c(expression(EIA[DM]),expression(EIA[Ha]))) +
@@ -2259,7 +2259,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   theme(strip.background = element_blank()) +
 #   ylab("")+xlab("") +
-#   scale_colour_manual(values=c("forestgreen", "blue","firebrick","black"),
+#   scale_colour_manual(values=c("limegreen", "blue","darkorchid3","black"),
 #                       name ="Scenario",
 #                       breaks=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"),
 #                       labels=c("SSP1-2.6","SSP2-2.6","SSP1-1.9","SSP2-1.9"),
@@ -2281,7 +2281,7 @@ rm(layout)
 #   theme(strip.background = element_blank()) +
 #   theme(legend.position="right") +
 #   ylab("")+xlab("") +
-#   scale_colour_manual(values=c("forestgreen", "blue","firebrick","black"),
+#   scale_colour_manual(values=c("limegreen", "blue","darkorchid3","black"),
 #                       name ="Scenario",
 #                       breaks=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"),
 #                       labels=c("SSP1-2.6","SSP2-2.6","SSP1-1.9","SSP2-1.9"),
@@ -2304,7 +2304,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   theme(strip.background = element_blank()) +
 #   theme(legend.position="bottom") +
-#   scale_colour_manual(values=c("forestgreen", "blue","firebrick","black"),
+#   scale_colour_manual(values=c("limegreen", "blue","darkorchid3","black"),
 #                       name ="Scenario",
 #                       breaks=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"),
 #                       labels=c("SSP1-2.6","SSP2-2.6","SSP1-1.9","SSP2-1.9")
@@ -2337,7 +2337,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("Index (1=1990)") +
 #   xlab("") +
-#   scale_colour_manual(values=c("black","skyblue", "firebrick"),
+#   scale_colour_manual(values=c("black","skyblue", "darkorchid3"),
 #                       name ="",
 #                       breaks=c("CH4_per_animal","Milk_per_animal","Milk EI"),
 #                       labels=c(expression(paste(kgCH[4],"/Animal"),paste(kg[Milk],"/Animal"),paste(kgCH[4],"/",kg[Milk]))))
@@ -2355,7 +2355,7 @@ rm(layout)
 #   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
 #   ylab("Index (1=1990)") +
 #   xlab("") +
-#   scale_colour_manual(values=c("black","skyblue", "firebrick"),
+#   scale_colour_manual(values=c("black","skyblue", "darkorchid3"),
 #                       name ="",
 #                       breaks=c("CH4_per_animal","Milk_per_animal","Milk EI"),
 #                       labels=c(expression(paste(kgCH[4],"/Animal"),paste(kg[Milk],"/Animal"),paste(kgCH[4],"/",kg[Milk]))))
