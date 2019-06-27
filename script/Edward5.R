@@ -13,6 +13,7 @@ library(data.table);
 library(tidyr)
 library(stringr)
 library(xlsx)
+library(openxlsx)
 library(ggpubr)
 #library(grid)
 library(gridExtra)
@@ -671,23 +672,32 @@ SSP_all.EM2 = rbind(SSP_all.EMtemp,SSP_all.EMtemp1)
 SSP_all.EM2_NL = subset(SSP_all.EM2, (Region=="NL"|Region=="NL_1"|Region=="NL_2"))
 SSP_all.EM2 = subset(SSP_all.EM2, !(Region=="NL"|Region=="NL_1"|Region=="NL_2"))
   # Determine required Correction Factors (historic)
-test=subset(SSP_all.EM2_NL, (Year==1990|Year==2020)&(variable=="EmisCH4LandUse"|variable=="EmisN2OLandUse"))
+test=subset(SSP_all.EM2_NL, variable=="EmisCH4LandUse"|variable=="EmisN2OLandUse")
 test$Historic[test$variable=="EmisCH4LandUse" & test$Year==2020] = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="CH4"]
 test$Historic[test$variable=="EmisN2OLandUse" & test$Year==2020] = NL_Emis.IPCC$MtCO2[NL_Emis.IPCC$Gas=="N2O"]
 test$Historic[test$variable=="EmisCH4LandUse" & test$Year==1990] = 15
 test$Historic[test$variable=="EmisN2OLandUse" & test$Year==1990] = 10
+test$Historic[test$variable=="EmisCH4LandUse" & test$Year==2000] = 13.79
+test$Historic[test$variable=="EmisN2OLandUse" & test$Year==2000] = 9.506
+test$Historic[test$variable=="EmisCH4LandUse" & test$Year==2010] = 13.46
+test$Historic[test$variable=="EmisN2OLandUse" & test$Year==2010] = 9.342
 test = test %>% mutate(Correction = Historic/value)
-test$Hist <- "Yes"
-test$Hist[test$Year>=2020] <- "NO"
-test$AgrID = paste(test$Scenario,test$Region,test$variable,test$Hist)
+  # Future correction values based on 2020
+test$AgrID1 = paste(test$Scenario,test$Region,test$variable)
+test$AgrID = paste(test$Scenario,test$Region,test$variable,test$Year)
+test1 = subset(test, Year > 2020)
+test2 = subset(test, Year == 2020)
+test = subset(test, Year <= 2020)
+test1$Correction <- test2[match(test1$AgrID1,test2$AgrID1),8] 
+test=rbind(test,test1)
+test$AgrID1 <-NULL
+rm(test1,test2)
   # Make correction to historic and future values
-SSP_all.EM2_NL$Hist <- "Yes"
-SSP_all.EM2_NL$Hist[SSP_all.EM2_NL$Year>=2020] <- "NO"
-SSP_all.EM2_NL$AgrID <- paste(SSP_all.EM2_NL$Scenario,SSP_all.EM2_NL$Region,SSP_all.EM2_NL$variable,SSP_all.EM2_NL$Hist)
+SSP_all.EM2_NL$AgrID <- paste(SSP_all.EM2_NL$Scenario,SSP_all.EM2_NL$Region,SSP_all.EM2_NL$variable,SSP_all.EM2_NL$Year)
 SSP_all.EM2_NL$Correction <- test[match(SSP_all.EM2_NL$AgrID,test$AgrID),8] 
 SSP_all.EM2_NL$Correction[is.na(SSP_all.EM2_NL$Correction)]<- 1
 SSP_all.EM2_NL = SSP_all.EM2_NL %>% mutate(value_cor = value * Correction)
-SSP_all.EM2_NL = subset(SSP_all.EM2_NL, select=-c(value,Hist,AgrID,Correction))
+SSP_all.EM2_NL = subset(SSP_all.EM2_NL, select=-c(value,AgrID,Correction))
 colnames(SSP_all.EM2_NL)[6] <- "value"
   # Merge corrected NL values
 SSP_all.EM2 = rbind(SSP_all.EM2,SSP_all.EM2_NL)
@@ -937,14 +947,14 @@ EmisTot = subset(EmisTot, Variable=="EmisCH4LandUse"|
 # write.xlsx(Socio2, file="output/Results_v11.xlsx", sheetName="Socio-Economics", append=TRUE, row.names=FALSE, showNA = TRUE)
 # write.xlsx(AgrProdDat, file="output/Results_v11.xlsx", sheetName="Agricultural Production", append=TRUE, row.names=FALSE, showNA = TRUE)
 
-# wb <- createWorkbook("output/Results_v11.xlsx") 
-# addWorksheet(wb, sheetName = "Emissions") 
-# writeData(wb, sheet = "Emissions", x = EmisDat) 
-# addWorksheet(wb, sheetName = "EIA") 
-# writeData(wb, sheet = "EIA", x = EIADat2) 
-# addWorksheet(wb, sheetName = "Socio-Economics") 
+# wb <- createWorkbook("output/Results_v11.xlsx")
+# addWorksheet(wb, sheetName = "Emissions")
+# writeData(wb, sheet = "Emissions", x = EmisDat)
+# addWorksheet(wb, sheetName = "EIA")
+# writeData(wb, sheet = "EIA", x = EIADat2)
+# addWorksheet(wb, sheetName = "Socio-Economics")
 # writeData(wb, sheet = "Socio-Economics", x = Socio2)
-# addWorksheet(wb, sheetName = "Agricultural Production") 
+# addWorksheet(wb, sheetName = "Agricultural Production")
 # writeData(wb, sheet = "Agricultural Production", x = AgrProdDat)
 # saveWorkbook(wb, "output/Results_v11.xlsx")
 
