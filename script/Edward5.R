@@ -348,7 +348,6 @@ SSP_all.NLa$EmisN2OLandUse <- NULL
 colnames(SSP_all.NLa)[colnames(SSP_all.NLa) == 'EmisCH4LandUse2'] <- 'EmisCH4LandUse'
 colnames(SSP_all.NLa)[colnames(SSP_all.NLa) == 'EmisN2OLandUse2'] <- 'EmisN2OLandUse'
 
-#rm(NLScale.CH41,NLScale.N2O1,NLScale.CH4,NLScale.N2O)
 # Correct agricultural production based on share of NL production in WEU for 2015 (FAO Data)
 SSP_all.NLa = SSP_all.NLa %>% mutate(AgriProdCropsEnergy_NL = AgriProdCropsEnergy * NL_Prod$value[NL_Prod$Group=="Crops"&NL_Prod$Type=="Share"&NL_Prod$Year=="2013"])
 SSP_all.NLa = SSP_all.NLa %>% mutate(AgriProdCropsNonEnergy_NL = AgriProdCropsNonEnergy * NL_Prod$value[NL_Prod$Group=="Crops"&NL_Prod$Type=="Share"&NL_Prod$Year=="2013"])
@@ -528,6 +527,13 @@ for(i in unique(SSP_all.NLbEne$CorVar2)){
 SSP_all.NLb2$value[SSP_all.NLb2$CorVar2==i] <- SSP_all.NLbEne$value[SSP_all.NLbEne$CorVar2==i]
 }
 
+# Have to correct historic production down downscale method (i) since use of trend creates mistakes
+test = subset(SSP_all.NLb2, (Variable=="AgriProdCropsNonEnergy"|Variable=="AgriProdLivestock"|Variable=="AgriProdCropsEnergy")&(Year==1981|Year==1990|Year==2000|Year==2010|Year==2020))
+SSP_all.NLb2 = subset(SSP_all.NLb2, !((Variable=="AgriProdCropsNonEnergy"|Variable=="AgriProdLivestock"|Variable=="AgriProdCropsEnergy")&(Year==1981|Year==1990|Year==2000|Year==2010|Year==2020)))
+test$value <- SSP_all.NLa[match(test$CorVar2,SSP_all.NLa$CorVar2),7] 
+SSP_all.NLb2 = rbind(SSP_all.NLb2,test)
+
+rm(test)
 #
 # ----*** Downscaling (iii) ----
 #
