@@ -69,6 +69,7 @@ colnames(LivestockProd)[1:5] <-c("YEAR","VARIABLE","SCENARIO","REGION","value1")
 LivestockProd$value <- LivestockProd$value1 / 1000 
 LivestockProd$UNIT <- "MtDM/yr"
 LivestockProd$value1 <- NULL
+LivestockProd  = subset(LivestockProd, YEAR==1981|YEAR==1990|YEAR==2000|YEAR==2010|YEAR==2020|YEAR==2030|YEAR==2040|YEAR==2050|YEAR==2060|YEAR==2070|YEAR==2080|YEAR==2090|YEAR==2100)
 # ---- INPUTS: DATA ----
 # Population
 WEU_pop=read.csv("data/Eurostat_pop.csv", sep=",", dec=".", stringsAsFactors = FALSE, colClasses = "character")
@@ -1739,25 +1740,46 @@ FigNLHist <- grid.arrange(NL_EIA_Liv,NL_EIA_Crop,layout_matrix=layout)
 rm(layout)
 # #
 # ---- FIG: Livestock Prod per Type ----
+# Set Orders
 LivestockProd$ScenOrder = factor(LivestockProd$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
 LivestockProd$LiveOrder = factor(LivestockProd$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
+# Add population and per-cap variables
+Population = subset(SSP_all, Variable=="Population")
+Population$VarID3 = paste(Population$Scenario,Population$Year,Population$Region)
+LivestockProd$VarID3 = paste(LivestockProd$SCENARIO,LivestockProd$YEAR,LivestockProd$REGION)
+LivestockProd$Pop_M <- Population[match(LivestockProd$VarID3, Population$VarID3),9]
+LivestockProd = LivestockProd %>% mutate(kg_pcap = value / Pop_M * 1000)
+LivestockProd$VarID3 <- NULL
+# Make per-cap variable indexed to 2010
+LivestockProd$VarID4 = paste(LivestockProd$SCENARIO,LivestockProd$LiveOrder,LivestockProd$REGION)
+LivestockProd.2010 = subset(LivestockProd, YEAR==2010)
+LivestockProd$value_2010 <- LivestockProd.2010[match(LivestockProd$VarID4, LivestockProd.2010$VarID4),10]
+LivestockProd = LivestockProd %>% mutate(index_2010 = kg_pcap / value_2010)
+rm(LivestockProd.2010)
+LivestockProd$VarID4 <- NULL
 
-FigLivestock <-ggplot(data=subset(LivestockProd, (REGION=="OECD.Europe"|REGION=="World")&(YEAR>=2010|YEAR<2050)&!(VARIABLE=="Total")), aes(x=YEAR, y=value, fill=LiveOrder)) + 
-  geom_area(colour="black", size=.1) +
-  geom_hline(yintercept=0,size = 0.1, colour='black') +
+FigLivestock <-ggplot(data=subset(LivestockProd, (REGION=="WEU"|REGION=="World")&(YEAR>=2010|YEAR<2050)&!(VARIABLE=="Total")), 
+                      aes(x=YEAR, y=index_2010, colour=LiveOrder, linetype=LiveOrder)) + 
+  geom_line(size=0.5) +
   xlim(2010,2050) +
   theme_bw() +
   theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
   theme(legend.title=element_blank(), legend.position="bottom") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(legend.position="right", legend.text=element_text(size=FontSize2), legend.title=element_text(face="bold")) +
-  ylab("Mt DM/yr") +
+  ylab("kg DM/cap/yr (2010=1.0)") +
   xlab("") +
-  scale_fill_manual(values=c("chocolate","olivedrab2","magenta","mistyrose","orangered"),
+  ylim(0.5,1.5) +
+  scale_color_manual(values=c("navy","olivedrab4","magenta","mistyrose4","orangered"),
                     name ="",
                     breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
                     labels=c("Beef","Non-Ruminant","Pork","Milk","Poultry")
   ) +
+  scale_linetype_manual(values=c("twodash","solid","solid","dotdash","longdash"),
+                        name ="",
+                        breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
+                        labels=c("Beef","Non-Ruminant","Pork","Milk","Poultry")
+  ) +                      
   facet_grid(REGION ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels, REGION=reg_labels), scale="free_y")
 FigLivestock
 
