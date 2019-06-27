@@ -15,8 +15,9 @@ library(stringr)
 library(xlsx)
 library(openxlsx)
 library(ggpubr)
-#library(grid)
 library(gridExtra)
+library(grid)
+library(lattice)
 library(gdata)
 
 
@@ -1074,8 +1075,8 @@ FigS6 <-grid.arrange(FigSSP_15,FigSSP_2,layout_matrix=lay)
 FigEIAWorldSSP1_26<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario=="SSP1_450"&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
                         aes(x=Year, y=value, colour=variable)) +
   geom_line(size=1) + geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) +
-  theme_bw() + theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() + theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=7)) +
   ylab("") + xlab("") + 
   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
@@ -1083,17 +1084,17 @@ FigEIAWorldSSP1_26
 
 FigProdWorldSSP1_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +  geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(Mt[DM],"/yr"))) +  xlab("") +  xlim(2000,2060) + ylim(0,7700) +
-  scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
+  scale_fill_manual(values=c("blueviolet","limegreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP1_26
 
 FigEmisWorldSSP1_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
@@ -1103,8 +1104,8 @@ FigEmisWorldSSP1_26
 FigEIAWorldSSP2_26<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario=="SSP2_450"&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
             aes(x=Year, y=value, colour=variable)) +
   geom_line(size=1) + geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) +
-  theme_bw() + theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() + theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") + xlab("") +
   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])),guide=FALSE)
@@ -1112,17 +1113,17 @@ FigEIAWorldSSP2_26
 
 FigProdWorldSSP2_26 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +  geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(Mt[DM],"/yr"))) +  xlab("") +  xlim(2000,2060) + ylim(0,7700) +
-  scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
+  scale_fill_manual(values=c("blueviolet","limegreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP2_26
 
 FigEmisWorldSSP2_26 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_450"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
@@ -1133,8 +1134,8 @@ FigEmisWorldSSP2_26
 FigEIAWorldSSP1_19<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario=="SSP1_20"&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
                         aes(x=Year, y=value, colour=variable)) +
   geom_line(size=1) + geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) +
-  theme_bw() + theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() + theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) + theme(plot.title = element_text(face="bold", size=7)) +
   ylab("") + xlab("") + 
   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(paste(MtCO[2],-eq/t[DM]),paste(tCO[2],-eq/Ha))), guide=FALSE)
@@ -1142,17 +1143,17 @@ FigEIAWorldSSP1_19
 
 FigProdWorldSSP1_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +  geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(Mt[DM],"/yr"))) +  xlab("") +  xlim(2000,2060) + ylim(0,7700) +
-  scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
+  scale_fill_manual(values=c("blueviolet","limegreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock"),guide=FALSE) 
 FigProdWorldSSP1_19
 
 FigEmisWorldSSP1_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP1_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=0, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")),guide=FALSE)
@@ -1162,8 +1163,8 @@ FigEmisWorldSSP1_19
 FigEIAWorldSSP2_19<-ggplot(data=subset(EIA, Year>1999&Region=="World"&Scenario=="SSP2_20"&(variable=="EIA_DM"|variable=="EIA_Ha")&(Year>"2000"|Year<"2060")&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")),
                         aes(x=Year, y=value, colour=variable)) +
   geom_line(size=1) + geom_hline(yintercept=0,size = 0.1, colour='black') + xlim(2010,2050) +
-  theme_bw() + theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() + theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab("") + xlab("") +
   scale_colour_manual(values=c("darkorchid3", "limegreen"),name ="",breaks=c("EIA_DM","EIA_Ha"),labels=c(expression(EIA[DM]),expression(EIA[Ha])))
@@ -1171,36 +1172,39 @@ FigEIAWorldSSP2_19
 
 FigProdWorldSSP2_19 <- ggplot(data=subset(AgProd, Region=="World"&!(variable=="TotalProduction")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") +  geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"),legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"),legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(Mt[DM],"/yr"))) +  xlab("") +  xlim(2000,2060) +
-  scale_fill_manual(values=c("blueviolet","darkgreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock")) 
+  scale_fill_manual(values=c("blueviolet","limegreen","darkgoldenrod4"),name="",breaks=c("AgriProdCropsEnergy","AgriProdCropsNonEnergy","AgriProdLivestock"),labels=c("Energy crops","Food and feed","Livestock")) 
 FigProdWorldSSP2_19
 
 FigEmisWorldSSP2_19 <- ggplot(data=subset(Emis, Region=="World"&!(variable=="TotalAgrEmissions")&Scenario=="SSP2_20"&(Year=="2010"|Year=="2020"|Year=="2030"|Year=="2040"|Year=="2050")), mapping=aes(x=Year, y=value, fill=variable)) +
   geom_bar(stat="identity") + geom_hline(yintercept=0,size = 0.1, colour='black') +
-  theme_bw() +  theme(text= element_text(size=FontSize, face="plain"), axis.text.x = element_text(angle=66, size=FontSize, hjust=1), axis.text.y = element_text(size=FontSize)) +
-  theme(legend.position="bottom", legend.text = element_text(size=FontSize, face="plain"), legend.direction="vertical") +
+  theme_bw() +  theme(text= element_text(size=FontSize3, face="plain"), axis.text.x = element_text(angle=66, size=FontSize3, hjust=1), axis.text.y = element_text(size=FontSize3)) +
+  theme(legend.position="bottom", legend.text = element_text(size=FontSize3, face="plain"), legend.direction="vertical") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   ylab(expression(paste(MtCO[2],"-eq/yr",""))) +  xlab("") +  xlim(2000,2060) + ylim(0,7900) +
   scale_fill_manual(values=c("bisque","coral4","blue","black"),name="",breaks=c("EmisCH4LandUse","EmisCO2LandUse","EmisN2OLandUse","TotalAgrEmissions"),labels=c(expression("CH"["4"],"CO"["2"],paste(N[2],O),"Total")))
 FigEmisWorldSSP2_19
 #
 # ---- ***Consolidated ----
-FigWorldSSP1_26 <- grid.arrange(FigProdWorldSSP1_26,FigEmisWorldSSP1_26,FigEIAWorldSSP1_26,ncol=3,top=textGrob("SSP1-2C", gp=gpar(fontsize=FontSize)))
-FigWorldSSP2_26 <- grid.arrange(FigProdWorldSSP2_26,FigEmisWorldSSP2_26,FigEIAWorldSSP2_26,ncol=3,top=textGrob("SSP2-2C", gp=gpar(fontsize=FontSize)))
-FigWorldSSP1_19 <- grid.arrange(FigProdWorldSSP1_19,FigEmisWorldSSP1_19,FigEIAWorldSSP1_19,ncol=3,top=textGrob("SSP1-1.5C", gp=gpar(fontsize=FontSize)))
-FigWorldSSP2_19 <- grid.arrange(FigProdWorldSSP2_19,FigEmisWorldSSP2_19,FigEIAWorldSSP2_19,ncol=3,top=textGrob("SSP2-1.5C", gp=gpar(fontsize=FontSize)))
+FigWorldSSP1_26 <- grid.arrange(FigProdWorldSSP1_26,FigEmisWorldSSP1_26,FigEIAWorldSSP1_26,ncol=3,top=textGrob("SSP1-2C", gp=gpar(fontsize=FontSize3)))
+FigWorldSSP2_26 <- grid.arrange(FigProdWorldSSP2_26,FigEmisWorldSSP2_26,FigEIAWorldSSP2_26,ncol=3,top=textGrob("SSP2-2C", gp=gpar(fontsize=FontSize3)))
+FigWorldSSP1_19 <- grid.arrange(FigProdWorldSSP1_19,FigEmisWorldSSP1_19,FigEIAWorldSSP1_19,ncol=3,top=textGrob("SSP1-1.5C", gp=gpar(fontsize=FontSize3)))
+FigWorldSSP2_19 <- grid.arrange(FigProdWorldSSP2_19,FigEmisWorldSSP2_19,FigEIAWorldSSP2_19,ncol=3,top=textGrob("SSP2-1.5C", gp=gpar(fontsize=FontSize3)))
 layout<-rbind(1,1,1,1,1,
               2,2,2,2,2,
               3,3,3,3,3,
-              4,4,4,4,4,4,4,4,4)
+              4,4,4,4,4,4,4,4)
 FigWorld<- grid.arrange(FigWorldSSP1_26,FigWorldSSP2_26,
                         FigWorldSSP1_19,FigWorldSSP2_19,layout_matrix=layout)
 
 rm(layout)
-# jpeg("output/For Draft/Figure1.jpeg", width=8*ppi, height=8*ppi, res=ppi, bg="black")
+
+## SAVE MANUALLY WITH DIMENSION 1000 X 1200
+
+# png("output/For Draft/Figure1.png", width=5*ppi, height=8*ppi, res=ppi, bg="black")
 # print(plot(FigWorld))
 # dev.off()
 #
