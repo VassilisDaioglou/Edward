@@ -1684,7 +1684,7 @@ FigAgProdFrac <-ggplot(data=subset(AgriProd, !(Region2=="World")&variable=="Agri
   theme(legend.title=element_blank(), legend.position="bottom") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(legend.position="right", legend.text=element_text(size=6), legend.title=element_text(face="bold")) +
-  ylab("Mt DM/yr") +
+  ylab("Fraction [-]") +
   xlab("") +
   scale_fill_manual(values=c("black","dodgerblue","limegreen","darkgoldenrod1","gray50","orangered","darkorchid1","chocolate"),
                     name ="",
