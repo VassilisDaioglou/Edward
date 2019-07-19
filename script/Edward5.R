@@ -1834,7 +1834,7 @@ FigLivestockCons <-ggplot(data=subset(LivestockCons, (REGION=="WEU"|REGION=="Wor
   theme(legend.title=element_blank(), legend.position="bottom") +
   theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
   theme(legend.position="right", legend.text=element_text(size=FontSize2), legend.title=element_text(face="bold")) +
-  ylab("kg DM/cap/yr (2010=1.0)") +
+  ylab("Per-capita Consumption (2010 = 1.00)") +
   xlab("") +
   ylim(0.5,1.5) +
   scale_color_manual(values=c("navy","olivedrab4","magenta","mistyrose4","orangered"),
@@ -1893,7 +1893,7 @@ FigLivestockCons
 # print(plot(FigLivestock))
 # dev.off()
 # #
-# png("output/For Draft/FigureS7_cons.png", width=9*ppi, height=5*ppi, res=ppi)
+# png("output/For Draft/FigureS7_cons.png", width=9*ppi, height=4.5*ppi, res=ppi)
 # print(plot(FigLivestockCons))
 # dev.off()
 # #
