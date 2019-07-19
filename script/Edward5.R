@@ -71,6 +71,26 @@ LivestockProd$value <- LivestockProd$value1 / 1000
 LivestockProd$UNIT <- "MtDM/yr"
 LivestockProd$value1 <- NULL
 LivestockProd  = subset(LivestockProd, YEAR==1981|YEAR==1990|YEAR==2000|YEAR==2010|YEAR==2020|YEAR==2030|YEAR==2040|YEAR==2050|YEAR==2060|YEAR==2070|YEAR==2080|YEAR==2090|YEAR==2100)
+
+LivestockCons_SSP1_20 = read.xlsx("data/LivestockCons.xlsx", sheet = 1, startRow=5)
+LivestockCons_SSP1_450 = read.xlsx("data/LivestockCons.xlsx", sheet = 2, startRow=5)
+LivestockCons_SSP2_20 = read.xlsx("data/LivestockCons.xlsx", sheet = 3, startRow=5)
+LivestockCons_SSP2_450 = read.xlsx("data/LivestockCons.xlsx", sheet = 4, startRow=5)
+LivestockCons_SSP1_20$SCENARIO <- "SSP1_20"
+LivestockCons_SSP1_450$SCENARIO <- "SSP1_450"
+LivestockCons_SSP2_20$SCENARIO <- "SSP2_20"
+LivestockCons_SSP2_450$SCENARIO <- "SSP2_450"
+LivestockCons = rbind(LivestockCons_SSP1_20,LivestockCons_SSP1_450,LivestockCons_SSP2_20,LivestockCons_SSP2_450)
+rm(LivestockCons_SSP1_20,LivestockCons_SSP1_450,LivestockCons_SSP2_20,LivestockCons_SSP2_450)
+LivestockCons = subset(LivestockCons, NUFPST==4)
+LivestockCons$NUFPST <- NULL
+LivestockCons=melt(LivestockCons, id.vars=c("t","NAPT","SCENARIO"), na.rm=TRUE)
+colnames(LivestockCons)[1:5] <-c("YEAR","VARIABLE","SCENARIO","REGION","value1")
+LivestockCons$value <- LivestockCons$value1 / 1000 
+LivestockCons$UNIT <- "MtDM/yr"
+LivestockCons$value1 <- NULL
+LivestockCons  = subset(LivestockCons, YEAR==1981|YEAR==1990|YEAR==2000|YEAR==2010|YEAR==2020|YEAR==2030|YEAR==2040|YEAR==2050|YEAR==2060|YEAR==2070|YEAR==2080|YEAR==2090|YEAR==2100)
+
 # ---- INPUTS: DATA ----
 # Population
 WEU_pop=read.csv("data/Eurostat_pop.csv", sep=",", dec=".", stringsAsFactors = FALSE, colClasses = "character")
@@ -1788,6 +1808,50 @@ FigLivestock <-ggplot(data=subset(LivestockProd, (REGION=="WEU"|REGION=="World")
 FigLivestock
 
 ##
+# ---- FIG: Livestock Cons per Type ----
+# Set Orders
+LivestockCons$ScenOrder = factor(LivestockCons$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
+LivestockCons$LiveOrder = factor(LivestockCons$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
+# Add population and per-cap variables
+LivestockCons$VarID3 = paste(LivestockCons$SCENARIO,LivestockCons$YEAR,LivestockCons$REGION)
+LivestockCons$Pop_M <- Population[match(LivestockCons$VarID3, Population$VarID3),9]
+LivestockCons = LivestockCons %>% mutate(kg_pcap = value / Pop_M * 1000)
+LivestockCons$VarID3 <- NULL
+# Make per-cap variable indexed to 2010
+LivestockCons$VarID4 = paste(LivestockCons$SCENARIO,LivestockCons$LiveOrder,LivestockCons$REGION)
+LivestockCons.2010 = subset(LivestockCons, YEAR==2010)
+LivestockCons$value_2010 <- LivestockCons.2010[match(LivestockCons$VarID4, LivestockCons.2010$VarID4),10]
+LivestockCons = LivestockCons %>% mutate(index_2010 = kg_pcap / value_2010)
+rm(LivestockCons.2010)
+LivestockCons$VarID4 <- NULL
+
+FigLivestockCons <-ggplot(data=subset(LivestockCons, (REGION=="WEU"|REGION=="World")&(YEAR>=2010|YEAR<2050)&!(VARIABLE=="Total")), 
+                      aes(x=YEAR, y=index_2010, colour=LiveOrder, linetype=LiveOrder)) + 
+  geom_line(size=0.5) +
+  xlim(2010,2050) +
+  theme_bw() +
+  theme(text= element_text(size=FontSize2, face="plain"), axis.text.x = element_text(angle=66, size=FontSize2, hjust=1), axis.text.y = element_text(size=FontSize2)) +
+  theme(legend.title=element_blank(), legend.position="bottom") +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.2)) +
+  theme(legend.position="right", legend.text=element_text(size=FontSize2), legend.title=element_text(face="bold")) +
+  ylab("kg DM/cap/yr (2010=1.0)") +
+  xlab("") +
+  ylim(0.5,1.5) +
+  scale_color_manual(values=c("navy","olivedrab4","magenta","mistyrose4","orangered"),
+                     name ="",
+                     breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
+                     labels=c("Beef","Mutton & Goat Meat","Pork","Milk","Poultry & Eggs")
+  ) +
+  scale_linetype_manual(values=c("twodash","solid","solid","dotdash","longdash"),
+                        name ="",
+                        breaks=c("beef","mutton & goat meat","pork","milk","poultry & eggs"),
+                        labels=c("Beef","Mutton & Goat Meat","Pork","Milk","Poultry & Eggs")
+  ) +                      
+  facet_grid(REGION ~ ScenOrder, labeller=labeller(ScenOrder = scen_labels, REGION=reg_labels), scale="free_y")
+FigLivestockCons
+
+##
+
 # # ---- OUTPUT: FOR DRAFT ----
 # png("output/For Draft/Figure1.png", width=5*ppi, height=8*ppi, res=ppi)
 # print(plot(FigWorld))
