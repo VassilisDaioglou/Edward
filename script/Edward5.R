@@ -1893,6 +1893,10 @@ FigLivestockCons
 # print(plot(FigLivestock))
 # dev.off()
 # #
+# png("output/For Draft/FigureS7_cons.png", width=9*ppi, height=5*ppi, res=ppi)
+# print(plot(FigLivestockCons))
+# dev.off()
+# #
 # ---- OUTPUT: OTHER ----
 # png("output/EIA.png", width=8*ppi, height=4*ppi, res=ppi)
 # print(plot(FigEIA))
