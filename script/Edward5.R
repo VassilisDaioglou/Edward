@@ -72,6 +72,7 @@ LivestockProd$UNIT <- "MtDM/yr"
 LivestockProd$value1 <- NULL
 LivestockProd  = subset(LivestockProd, YEAR==1981|YEAR==1990|YEAR==2000|YEAR==2010|YEAR==2020|YEAR==2030|YEAR==2040|YEAR==2050|YEAR==2060|YEAR==2070|YEAR==2080|YEAR==2090|YEAR==2100)
 
+# Livestock Consumption
 LivestockCons_SSP1_20 = read.xlsx("data/LivestockCons.xlsx", sheet = 1, startRow=5)
 LivestockCons_SSP1_450 = read.xlsx("data/LivestockCons.xlsx", sheet = 2, startRow=5)
 LivestockCons_SSP2_20 = read.xlsx("data/LivestockCons.xlsx", sheet = 3, startRow=5)
@@ -621,6 +622,9 @@ rm(SSP_all.NLa,SSP_all.NLa2,
    SSP_all.NLb,SSP_all.NLb2,EuroStat_Emis.Cor,NL_Prod.Cor,NL_Land.Cor,
    SSP_all.NLc,SSP_all.NLc2)
 
+Population = subset(SSP_all, Variable=="Population")
+Population$VarID3 = paste(Population$Scenario,Population$Year,Population$Region)
+
 # ---- MAKE RELEVANT DFs ----
 # Make DF of Agricultural Propduction
 SSP_all.AP = subset(SSP_all, VarID=="AgriProd")
@@ -930,7 +934,7 @@ AgProd = subset(SSP_all.AP2, Year>1999)
 AgProd = subset(AgProd, Region=="EU"|Region=="World"|Region=="NL"|Region=="NL_1"|Region=="NL_2")
 
 Socio = subset(SSP_all, Variable=="Population"|
-                      Variable=="AgriDemCropsFood"|Variable=="AgriDemCropsFeed"|Variable=="AgriDemLivestockFood"|
+                      Variable=="AgriDemCropsFood"|Variable=="AgriDemCropsFeed"|
                       Variable=="YieldCereal"|
                       Variable=="LandCropland"|Variable=="LandCroplandEnergyCrops"|Variable=="LandOtherArableLand"|Variable=="LandPasture")
 Socio = subset(Socio, select=-c(VarID,VarID2,Unit))
@@ -940,12 +944,10 @@ Socio=spread(Socio,variable,value)
 Socio$YieldIndex = Socio$YieldCereal / Socio$YieldCereal[Socio$Year=="2010"]
 Socio = Socio %>% mutate(AgriDemCropsFood_PerCap = AgriDemCropsFood/Population)
 Socio = Socio %>% mutate(AgriDemCropsFeed_PerCap = AgriDemCropsFeed/Population)
-Socio = Socio %>% mutate(AgriDemLivestockFood_PerCap = AgriDemLivestockFood/Population)
 Socio=melt(Socio, id.vars=c("Model","Scenario","Year","Region"))
 Socio$VarOrder = factor(Socio$variable, levels=c("Population","AgriDemCropsFood","AgriDemCropsFeed","AgriDemLivestockFood","AgriDemCropsFood_PerCap","AgriDemCropsFeed_PerCap","AgriDemLivestockFood_PerCap","YieldCereal","YieldIndex","TotalLandUse"))
 Socio$Unit[Socio$variable=="AgriDemCropsFeed"] <- "MtDM/yr"
 Socio$Unit[Socio$variable=="AgriDemCropsFood"] <- "MtDM/yr"
-Socio$Unit[Socio$variable=="AgriDemLivestockFood"] <- "MtDM/yr"
 Socio$Unit[Socio$variable=="Population"] <- "Million"
 Socio$Unit[Socio$variable=="TotalLandUse"] <- "MHa"
 Socio$Unit[Socio$variable=="LandCropland"] <- "MHa"
@@ -956,8 +958,43 @@ Socio$Unit[Socio$variable=="YieldCereal"] <- "tDM/Ha/yr"
 Socio$Unit[Socio$variable=="YieldIndex"] <- "2010=1"
 Socio$Unit[Socio$variable=="AgriDemCropsFeed_PerCap"] <- "tDM/cap/yr"
 Socio$Unit[Socio$variable=="AgriDemCropsFood_PerCap"] <- "tDM/cap/yr"
-Socio$Unit[Socio$variable=="AgriDemLivestockFood_PerCap"] <- "tDM/cap/yr"
 
+  # Bind livestock consumption (TOTAL and PER CAPITA)
+  # Set Orders
+  LivestockCons$ScenOrder = factor(LivestockCons$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
+  LivestockCons$LiveOrder = factor(LivestockCons$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
+  # Add population and per-cap variables
+  LivestockCons$VarID3 = paste(LivestockCons$SCENARIO,LivestockCons$YEAR,LivestockCons$REGION)
+  LivestockCons$Pop_M <- Population[match(LivestockCons$VarID3, Population$VarID3),9]
+  LivestockCons = LivestockCons %>% mutate(kg_pcap = value / Pop_M * 1000)
+  LivestockCons$VarID3 <- NULL
+  # Make per-cap variable indexed to 2010
+  LivestockCons$VarID4 = paste(LivestockCons$SCENARIO,LivestockCons$LiveOrder,LivestockCons$REGION)
+  LivestockCons.2010 = subset(LivestockCons, YEAR==2010)
+  LivestockCons$value_2010 <- LivestockCons.2010[match(LivestockCons$VarID4, LivestockCons.2010$VarID4),10]
+  LivestockCons = LivestockCons %>% mutate(index_2010 = kg_pcap / value_2010)
+  rm(LivestockCons.2010)
+  LivestockCons$VarID4 <- NULL
+  
+  AgriDemLiveTotal = subset(LivestockCons, select=c(YEAR,VARIABLE,SCENARIO,REGION,value))
+  AgriDemLiveTotal = subset(AgriDemLiveTotal, VARIABLE=="Total")
+  AgriDemLiveTotal$Model<-"IMAGE"
+  AgriDemLiveTotal$VARIABLE<-"AgriDemLivestockTotal"
+  AgriDemLiveTotal$Unit<-"ktDM/yr"
+  AgriDemLiveTotal$VarOrder<-""
+  colnames(AgriDemLiveTotal)[1:8]<-c("Year","variable","Scenario","Region","value","Model","Unit","VarOrder")
+  
+  AgriDemLiveTotal_pc = subset(LivestockCons, select=c(YEAR,VARIABLE,SCENARIO,REGION,kg_pcap))
+  AgriDemLiveTotal_pc = subset(AgriDemLiveTotal_pc, VARIABLE=="Total")
+  AgriDemLiveTotal_pc$Model<-"IMAGE"
+  AgriDemLiveTotal_pc$VARIABLE<-"AgriDemLivestockTotal_PerCap"
+  AgriDemLiveTotal_pc$Unit<-"kgDM/cap/yr"
+  AgriDemLiveTotal_pc$VarOrder<-""
+  colnames(AgriDemLiveTotal_pc)[1:8]<-c("Year","variable","Scenario","Region","value","Model","Unit","VarOrder")
+
+Socio=rbind(Socio,AgriDemLiveTotal,AgriDemLiveTotal_pc)
+rm(AgriDemLiveTotal_pc,AgriDemLiveTotal)
+#
 Socio2=subset(Socio, selec=-c(Model,VarOrder))
 
 Socio2=spread(Socio2,Year,value)
@@ -1768,8 +1805,6 @@ rm(layout)
 LivestockProd$ScenOrder = factor(LivestockProd$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
 LivestockProd$LiveOrder = factor(LivestockProd$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
 # Add population and per-cap variables
-Population = subset(SSP_all, Variable=="Population")
-Population$VarID3 = paste(Population$Scenario,Population$Year,Population$Region)
 LivestockProd$VarID3 = paste(LivestockProd$SCENARIO,LivestockProd$YEAR,LivestockProd$REGION)
 LivestockProd$Pop_M <- Population[match(LivestockProd$VarID3, Population$VarID3),9]
 LivestockProd = LivestockProd %>% mutate(kg_pcap = value / Pop_M * 1000)
@@ -1809,22 +1844,6 @@ FigLivestock
 
 ##
 # ---- FIG: Livestock Cons per Type ----
-# Set Orders
-LivestockCons$ScenOrder = factor(LivestockCons$SCENARIO, levels=c("SSP1_450","SSP2_450","SSP1_20","SSP2_20"))
-LivestockCons$LiveOrder = factor(LivestockCons$VARIABLE, levels=c("beef","mutton & goat meat","pork","milk","poultry & eggs"))
-# Add population and per-cap variables
-LivestockCons$VarID3 = paste(LivestockCons$SCENARIO,LivestockCons$YEAR,LivestockCons$REGION)
-LivestockCons$Pop_M <- Population[match(LivestockCons$VarID3, Population$VarID3),9]
-LivestockCons = LivestockCons %>% mutate(kg_pcap = value / Pop_M * 1000)
-LivestockCons$VarID3 <- NULL
-# Make per-cap variable indexed to 2010
-LivestockCons$VarID4 = paste(LivestockCons$SCENARIO,LivestockCons$LiveOrder,LivestockCons$REGION)
-LivestockCons.2010 = subset(LivestockCons, YEAR==2010)
-LivestockCons$value_2010 <- LivestockCons.2010[match(LivestockCons$VarID4, LivestockCons.2010$VarID4),10]
-LivestockCons = LivestockCons %>% mutate(index_2010 = kg_pcap / value_2010)
-rm(LivestockCons.2010)
-LivestockCons$VarID4 <- NULL
-
 FigLivestockCons <-ggplot(data=subset(LivestockCons, (REGION=="WEU"|REGION=="World")&(YEAR>=2010|YEAR<2050)&!(VARIABLE=="Total")), 
                       aes(x=YEAR, y=index_2010, colour=LiveOrder, linetype=LiveOrder)) + 
   geom_line(size=0.5) +
